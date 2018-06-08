@@ -1,4 +1,6 @@
 import tweepy
+import csv
+import pandas as pd
 from tweepy import OAuthHandler
 
 
@@ -16,8 +18,14 @@ auth.set_access_token(access_token, access_secret)
  
 api = tweepy.API(auth)
 
-# Get the User object for twitter...
-user = api.get_user('twitter')
-print (user.followers_count)
-for friend in user.friends():
-   print (friend.screen_name)
+search_text = "#Building Automation"
+# Open/Create a file to append data
+csvFile = open('ua.csv', 'a')
+#Use csv Writer
+csvWriter = csv.writer(csvFile)
+search_number = 10
+for tweet in tweepy.Cursor(api.search,q=search_text,count=100,
+                           lang="en",
+                           since="2017-04-03").items():
+    print (tweet.created_at, tweet.text)
+    csvWriter.writerow([tweet.created_at, tweet.text.encode('utf-8')])
