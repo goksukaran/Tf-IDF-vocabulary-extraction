@@ -42,7 +42,7 @@ def initilizeTweppy():
     access_secret = data['access_secret']  
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_secret)
-    print(consumer_key)
+   
     #Connect Api
     global api 
     api = tweepy.API(auth)
