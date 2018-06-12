@@ -13,10 +13,15 @@ import gensim
 
 
 from LoadData import TwitterData_Initialize
+from TwitterCleanuper import TwitterData_Cleansing,TwitterCleanuper
 
 # plotly configuration
 #plotly.offline.init_notebook_mode()
 
 data = TwitterData_Initialize()
 data.initialize("Data/EmotionsData/train.csv")
-data.processed_data.head(5)
+print(data.processed_data.head(5))
+
+data = TwitterData_Cleansing(data)
+data.cleanup(TwitterCleanuper())
+print(data.processed_data.head(5))
