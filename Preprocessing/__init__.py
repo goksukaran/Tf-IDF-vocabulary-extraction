@@ -15,6 +15,7 @@ import gensim
 from LoadData import TwitterData_Initialize
 from TwitterCleanuper import TwitterData_Cleansing,TwitterCleanuper
 from TokenizationStemming import TwitterData_TokenStem
+from TwitterData_wordlist import TwitterData_Wordlist
 # plotly configuration
 #plotly.offline.init_notebook_mode()
 
@@ -43,3 +44,6 @@ for idx, stop_word in enumerate(stopwords):
     if stop_word not in whitelist:
         del words[stop_word]
 print(words.most_common(5))
+
+data = TwitterData_Wordlist(data)
+data.build_wordlist()
