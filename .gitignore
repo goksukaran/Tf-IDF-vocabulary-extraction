@@ -105,6 +105,8 @@ venv.bak/
 FOLDERS
 Data/
 ExampleProjects/
+TensorFlowWord2vec/log
 
 TWETTERKEY
 TwitterApi_Keys.json
+*.zip
