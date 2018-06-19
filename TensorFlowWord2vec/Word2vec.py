@@ -55,7 +55,8 @@ FLAGS, unparsed = parser.parse_known_args()
 # Create the directory for TensorBoard variables if there is not.
 if not os.path.exists(FLAGS.log_dir):
   os.makedirs(FLAGS.log_dir)
-
+  
+print(FLAGS.log_dir)
 
 # pylint: disable=redefined-outer-name
 # Step 1: Download the data.
