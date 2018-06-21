@@ -81,7 +81,7 @@ def Saveextracthastags(search_text):
     print(hastaglist)
 def main():
   initilizeTweppy()
-  Saveextracthastags("#BuildingAutomation")
+  Saveextracthastags("#Buldingautomation")
   #searchandsave(hastaglist);
 if __name__== "__main__":
   main()
