@@ -5,7 +5,7 @@ from tweepy import OAuthHandler
 from tweepy import Stream
 from tweepy.streaming import StreamListener
 from pprint import pprint
-
+import unicodedata
 try:
     import json
 except ImportError:
@@ -58,9 +58,9 @@ def Saveextracthastags(search_text):
     #Use csv Writer
     csvWriter = csv.writer(csvFile)
    
-    for tweet in tweepy.Cursor(api.search,q=search_text,count=10000000,
+    for tweet in tweepy.Cursor(api.search,q=search_text,count=100,
                                lang="en",
-                               since="2000-04-03").items(100000):
+                               since="2000-04-03").items(100):
         #csvWriter.writerow([tweet.created_at, tweet.text.encode('utf-8')])
        for i in range(0, len(tweet.entities.get('hashtags'))):
            
@@ -75,14 +75,16 @@ def Saveextracthastags(search_text):
         
                
                 
-       csvWriter.writerow([tweet.created_at, tweet.text.encode('utf-8')])
+       #csvWriter.writerow([tweet.created_at, tweet.text.encode('utf-8')])
        #hastaglist.append(tweet.entities.get('hashtags')[0]['text']);
-       
-    print(hastaglist)
+       csvWriter.writerow( [tweet.text.encode('utf-8')])
+       #print(tweet.text.encode('utf-8'))
+   
 def main():
   initilizeTweppy()
-  Saveextracthastags("#Buldingautomation")
+  Saveextracthastags("#Berlin")
   #searchandsave(hastaglist);
 if __name__== "__main__":
   main()
+  print(hastaglist)
 
