@@ -39,20 +39,22 @@ print(data.processed_data.head(5))
 data = TwitterData_TokenStem(data)
 data.tokenize()
 data.stem()
-print(data.processed_data.head(5))
-  
-words = Counter()
-for idx in data.processed_data.index:
-    words.update(data.processed_data.loc[idx, "text"])
-  
-print(words.most_common(5))
-  
-stopwords=nltk.corpus.stopwords.words("english")
-whitelist = ["n't", "not"]
-for idx, stop_word in enumerate(stopwords):
-    if stop_word not in whitelist:
-        del words[stop_word]
-print(words.most_common(5))
-  
-data = TwitterData_Wordlist(data)
-data.build_wordlist()
+print(data.processed_data.head(7))
+   
+#===============================================================================
+# words = Counter()
+# for idx in data.processed_data.index:
+#     words.update(data.processed_data.loc[idx, "text"])
+#    
+# print(words.most_common(5))
+#    
+# stopwords=nltk.corpus.stopwords.words("english")
+# whitelist = ["n't", "not"]
+# for idx, stop_word in enumerate(stopwords):
+#     if stop_word not in whitelist:
+#         del words[stop_word]
+# print(words.most_common(5))
+#    
+# data = TwitterData_Wordlist(data)
+# data.build_wordlist()
+#===============================================================================
