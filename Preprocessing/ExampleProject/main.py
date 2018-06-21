@@ -1,3 +1,8 @@
+'''
+Created on 21 Jun 2018
+
+@author: goksukara
+'''
 from collections import Counter
 import nltk
 import pandas as pd
@@ -10,7 +15,7 @@ from sklearn.metrics import f1_score, precision_score, recall_score, accuracy_sc
 from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV, RandomizedSearchCV
 from time import time
 import gensim
-
+import os.path
 
 from LoadData import TwitterData_Initialize
 from TwitterCleanuper import TwitterData_Cleansing,TwitterCleanuper
@@ -19,8 +24,12 @@ from TwitterData_wordlist import TwitterData_Wordlist
 # plotly configuration
 #plotly.offline.init_notebook_mode()
 
+#To find absulet path
+parrentdirectory = os.path.abspath('..')
+
+
 data = TwitterData_Initialize()
-data.initialize("Data/EmotionsData/train.csv")
+data.initialize(parrentdirectory+"/Data/EmotionsData/train.csv")
 print(data.processed_data.head(10))
 
 data = TwitterData_Cleansing(data)

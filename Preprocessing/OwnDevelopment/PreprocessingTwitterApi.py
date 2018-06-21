@@ -15,6 +15,7 @@ from sklearn.metrics import f1_score, precision_score, recall_score, accuracy_sc
 from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV, RandomizedSearchCV
 from time import time
 import gensim
+import os.path
 
 
 from LoadData import TwitterData_Initialize
@@ -22,9 +23,12 @@ from TwitterCleanuper import TwitterData_Cleansing,TwitterCleanuper
 from TokenizationStemming import TwitterData_TokenStem
 from TwitterData_wordlist import TwitterData_Wordlist
 
+#To find absulet path
+parrentdirectory = os.path.abspath('..')
+
 # plotly configuration
 #plotly.offline.init_notebook_mode()
 
 data = TwitterData_Initialize()
-data.read("Data/Twitter/#Berlin.csv")
+data.read(parrentdirectory+"/Data/Twitter/#Berlin.csv")
 print(data.processed_data.head(10))
