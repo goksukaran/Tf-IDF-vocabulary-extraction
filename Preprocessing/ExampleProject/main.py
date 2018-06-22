@@ -30,33 +30,31 @@ parrentdirectory = os.path.abspath('..')
 
 data = TwitterData_Initialize()
 data.initialize(parrentdirectory+"/Data/EmotionsData/train.csv")
-print(data.processed_data.head(10))
+#print(data.processed_data.head(10))
 data.processed_data.to_csv('first1.csv')
 
 data = TwitterData_Cleansing(data)
 data.cleanup(TwitterCleanuper())
-print(data.processed_data.head(5))
+#print(data.processed_data.head(5))
   
 data.processed_data.to_csv('out.csv')  
 data = TwitterData_TokenStem(data)
 data.tokenize()
 data.stem()
-print(data.processed_data.head(7))
+#print(data.processed_data.head(7))
 data.processed_data.to_csv('Tokinezed.csv')
-#===============================================================================
-# words = Counter()
-# for idx in data.processed_data.index:
-#     words.update(data.processed_data.loc[idx, "text"])
-#    
-# print(words.most_common(5))
-#    
-# stopwords=nltk.corpus.stopwords.words("english")
-# whitelist = ["n't", "not"]
-# for idx, stop_word in enumerate(stopwords):
-#     if stop_word not in whitelist:
-#         del words[stop_word]
-# print(words.most_common(5))
-#    
-# data = TwitterData_Wordlist(data)
-# data.build_wordlist()
-#===============================================================================
+words = Counter()
+for idx in data.processed_data.index:
+    words.update(data.processed_data.loc[idx, "text"])
+    
+print(words.most_common(5))
+    
+stopwords=nltk.corpus.stopwords.words("english")
+whitelist = ["n't", "not"]
+for idx, stop_word in enumerate(stopwords):
+    if stop_word not in whitelist:
+        del words[stop_word]
+print(words.most_common(5))
+     
+data = TwitterData_Wordlist(data)
+data.build_wordlist()
