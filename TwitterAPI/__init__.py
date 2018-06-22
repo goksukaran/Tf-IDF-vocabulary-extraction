@@ -78,12 +78,11 @@ def Saveextracthastags(search_text):
        csvWriter.writerow([tweet.text])
        #hastaglist.append(tweet.entities.get('hashtags')[0]['text']);
        #csvWriter.writerow( [tweet.text])
-       print(tweet.text)
        
     csvFile.close()   
 def main():
   initilizeTweppy()
-  Saveextracthastags("#CHP")
+  Saveextracthastags("#buildingautomation")
   #searchandsave(hastaglist);
 if __name__== "__main__":
   main()

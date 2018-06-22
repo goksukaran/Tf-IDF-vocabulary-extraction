@@ -6,6 +6,7 @@ Created on 21 Jun 2018
 import pandas as pd
 import re as regex
 import nltk
+import os.path
 class ReadData():
     data = []
     processed_data = []
@@ -98,3 +99,11 @@ class RemoveStopwords(TwitterData_TokenStem):
             return row["tokenized_text"]
                 
         self.processed_data = self.processed_data.apply(removestopwords,axis=1)       
+        
+class SaveTxt(RemoveStopwords):
+    def save(self,queryhastag):
+        parrentdirectory = os.path.abspath('..')
+        directoryfile=parrentdirectory+"/Data/Twitter/Preprocessed/"+queryhastag
+        print(directoryfile)
+        self.processed_data.to_csv(directoryfile+'pre.csv')
+       

@@ -8,33 +8,44 @@ import os.path
 import csv
 
 
-from TwitterPreprocessing import ReadData,TwitterData_Cleansing,TwitterCleanuper,TwitterData_TokenStem,RemoveStopwords
+from TwitterPreprocessing import ReadData,TwitterData_Cleansing,TwitterCleanuper,TwitterData_TokenStem,RemoveStopwords,SaveTxt
 
-#To find absulet path
-parrentdirectory = os.path.abspath('..')
+
 
 # plotly configuration
 #plotly.offline.init_notebook_mode()
 
-data = ReadData()
-data.readdata(parrentdirectory+"/Data/Twitter/#Hamburg.csv")
-#print(data.processed_data.head(10))
 
+def SearchSingleHastagtoTxt(queryhastag):
+    #To find absulet path
+    parrentdirectory = os.path.abspath('..')
+    directoryfile=parrentdirectory+"/Data/Twitter/Raw/"+queryhastag
+    
+    data = ReadData()
+    data.readdata(directoryfile+".csv")
+    #print(data.processed_data.head(10))
+    
+    
+    
+    data = TwitterData_Cleansing(data)
+    data.cleanup(TwitterCleanuper())
+    #print(data.processed_data.head(10))
+    
+    
+    
+    data = TwitterData_TokenStem(data)
+    data.tokenize()
+    data.stem()
+    #print(data.processed_data.head(7))
+    
+    
+    data=RemoveStopwords(data)
+    data.remove()
+    #print(data.processed_data.head(10))
+    
+    data=SaveTxt(data)
+    data.save(queryhastag)
+    
 
+SearchSingleHastagtoTxt("#buildingautomation")
 
-data = TwitterData_Cleansing(data)
-data.cleanup(TwitterCleanuper())
-#print(data.processed_data.head(10))
-
-
-
-data = TwitterData_TokenStem(data)
-data.tokenize()
-data.stem()
-print(data.processed_data.head(7))
-data.processed_data.to_csv('out2.csv')
-
-data=RemoveStopwords(data)
-data.remove()
-print(data.processed_data.head(10))
-data.processed_data.to_csv('out2.csv')
