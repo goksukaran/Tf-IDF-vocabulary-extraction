@@ -5,7 +5,7 @@ Created on 21 Jun 2018
 '''
 
 import os.path
-import csv
+
 
 
 from TwitterPreprocessing import ReadData,TwitterData_Cleansing,TwitterCleanuper,TwitterData_TokenStem,RemoveStopwords,SaveTxt
@@ -16,13 +16,13 @@ from TwitterPreprocessing import ReadData,TwitterData_Cleansing,TwitterCleanuper
 #plotly.offline.init_notebook_mode()
 
 
-def SearchSingleHastagtoTxt(queryhastag):
+def SearchSingleHastagtoTxt(queryhastag,workingdic):
     #To find absulet path
-    parrentdirectory = os.path.abspath('..')
-    directoryfile=parrentdirectory+"/Data/Twitter/Raw/"+queryhastag
-    
+    os.chdir(workingdic)
+    #parrentdirectory = os.path.abspath('..')
+    #directoryfile=parrentdirectory+queryhastag
     data = ReadData()
-    data.readdata(directoryfile+".csv")
+    data.readdata(workingdic+"/"+queryhastag)
     #print(data.processed_data.head(10))
     
     
@@ -44,8 +44,8 @@ def SearchSingleHastagtoTxt(queryhastag):
     #print(data.processed_data.head(10))
     
     data=SaveTxt(data)
-    data.save(queryhastag)
+    data.save(queryhastag,workingdic)
     
 
-SearchSingleHastagtoTxt("#buildingautomation")
+#SearchSingleHastagtoTxt("#buildingautomation")
 

@@ -17,7 +17,7 @@ def searchandsave(hastaglist):
     for i in range(len(hastaglist)):
         search_text='#'+hastaglist[i]
         # Open/Create a file to append data
-        csvFile = open("data/"+search_text+'.csv', 'a')
+        csvFile = open("data/"+search_text+'.csv', 'a', encoding='UTF-8')
         #Use csv Writer
         csvWriter = csv.writer(csvFile)
        
@@ -25,7 +25,7 @@ def searchandsave(hastaglist):
                                    lang="en",
                                    since="2000-04-03").items(1000):
           # print (tweet.created_at, tweet.text)
-           csvWriter.writerow([tweet.created_at, tweet.text.encode('utf-8')])
+           csvWriter.writerow([tweet.text])
     
 
  
@@ -83,7 +83,7 @@ def Saveextracthastags(search_text):
 def main():
   initilizeTweppy()
   Saveextracthastags("#buildingautomation")
-  #searchandsave(hastaglist);
+  searchandsave(hastaglist);
 if __name__== "__main__":
   main()
   print(hastaglist)

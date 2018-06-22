@@ -101,9 +101,11 @@ class RemoveStopwords(TwitterData_TokenStem):
         self.processed_data = self.processed_data.apply(removestopwords,axis=1)       
         
 class SaveTxt(RemoveStopwords):
-    def save(self,queryhastag):
+    def save(self,queryhastag,workingdic):
+        os.chdir(workingdic)
         parrentdirectory = os.path.abspath('..')
-        directoryfile=parrentdirectory+"/Data/Twitter/Preprocessed/"+queryhastag
+        print(parrentdirectory)
+        directoryfile=parrentdirectory+"/Preprocessed/"+queryhastag
         print(directoryfile)
-        self.processed_data.to_csv(directoryfile+'pre.csv')
+        self.processed_data.to_csv(directoryfile)
        
