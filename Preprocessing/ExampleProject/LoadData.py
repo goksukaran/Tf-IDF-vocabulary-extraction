@@ -37,12 +37,3 @@ class TwitterData_Initialize():
             self.wordlist = []
             self.data_model = None
             self.data_labels = None
-    def read(self,csv_file,from_cached=None):
-        if from_cached is not None:
-                self.data_model = pd.read_csv(from_cached)
-                return
-           
-        self.data = pd.read_csv(csv_file)
-        
-        self.processed_data = self.data
-        self.wordlist = []      

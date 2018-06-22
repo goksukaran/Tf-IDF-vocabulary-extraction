@@ -31,16 +31,18 @@ parrentdirectory = os.path.abspath('..')
 data = TwitterData_Initialize()
 data.initialize(parrentdirectory+"/Data/EmotionsData/train.csv")
 print(data.processed_data.head(10))
+data.processed_data.to_csv('first1.csv')
 
 data = TwitterData_Cleansing(data)
 data.cleanup(TwitterCleanuper())
 print(data.processed_data.head(5))
   
+data.processed_data.to_csv('out.csv')  
 data = TwitterData_TokenStem(data)
 data.tokenize()
 data.stem()
 print(data.processed_data.head(7))
-   
+data.processed_data.to_csv('Tokinezed.csv')
 #===============================================================================
 # words = Counter()
 # for idx in data.processed_data.index:
