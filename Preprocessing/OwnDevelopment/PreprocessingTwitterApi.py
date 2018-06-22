@@ -35,6 +35,6 @@ print(data.processed_data.head(7))
 data.processed_data.to_csv('out2.csv')
 
 data=RemoveStopwords(data)
-data.remove("english")
+data.remove()
 print(data.processed_data.head(10))
 data.processed_data.to_csv('out2.csv')
