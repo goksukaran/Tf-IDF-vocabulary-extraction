@@ -85,13 +85,15 @@ class TwitterData_TokenStem(TwitterData_Cleansing):
     
     
 class RemoveStopwords(TwitterData_TokenStem):
+    
     def __init__(self, previous):
         self.processed_data = previous.processed_data
-    def remove(self,languge):
-        stopwords=nltk.corpus.stopwords.words(languge)
-        whitelist = ["n't", "not"]
-        for idx, stop_word in enumerate(stopwords):
-            if stop_word not in whitelist:
-                del self.processed_data[stop_word]
+    def remove(self,stopwords=nltk.corpus.stopwords.words("english")):
+        def removestopwords(row):
+            for w in row["tokenized_text"]: 
+                if w in stopwords:
+                    row["tokenized_text"].remove(w)
+                    #self.processed_data.append(w)
+            return row["tokenized_text"]
                 
-                yield self.processed_data        
+        self.processed_data = self.processed_data.apply(removestopwords,axis=1)       

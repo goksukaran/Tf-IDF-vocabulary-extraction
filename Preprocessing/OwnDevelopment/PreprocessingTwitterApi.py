@@ -18,13 +18,13 @@ parrentdirectory = os.path.abspath('..')
 
 data = ReadData()
 data.readdata(parrentdirectory+"/Data/Twitter/#Hamburg.csv")
-print(data.processed_data.head(10))
+#print(data.processed_data.head(10))
 
 
 
 data = TwitterData_Cleansing(data)
 data.cleanup(TwitterCleanuper())
-print(data.processed_data.head(10))
+#print(data.processed_data.head(10))
 
 
 
