@@ -107,5 +107,5 @@ class SaveTxt(RemoveStopwords):
         print(parrentdirectory)
         directoryfile=parrentdirectory+"/Preprocessed/"+queryhastag
         print(directoryfile)
-        self.processed_data.to_csv(directoryfile)
+        self.processed_data.to_csv(directoryfile,index=False)
        
