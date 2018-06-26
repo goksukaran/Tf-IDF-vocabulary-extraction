@@ -112,3 +112,4 @@ TwitterApi_Keys.json
 *.zip
 *.csv
 playground.py
+TensorFlowWord2vec/Exampleproject
