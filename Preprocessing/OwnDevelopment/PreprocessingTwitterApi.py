@@ -23,25 +23,26 @@ def SearchSingleHastagtoTxt(queryhastag,workingdic):
     #directoryfile=parrentdirectory+queryhastag
     data = ReadData()
     data.readdata(workingdic+"/"+queryhastag)
-    print(data.processed_data.head(10))
+    #print(data.processed_data.head(10))
     
     
     
     data = TwitterData_Cleansing(data)
     data.cleanup(TwitterCleanuper())
-    print(data.processed_data.head(10))
+    #print(data.processed_data.head(10))
     
     
     
     data = TwitterData_TokenStem(data)
     data.tokenize()
     data.stem()
-    print(data.processed_data.head(7))
+    #print(data.processed_data.head(7))
     
     
     data=RemoveStopwords(data)
     data.remove()
-    print(data.processed_data.head(10))
+    #print(data.processed_data.head(10))
+    
     
     data=SaveTxt(data)
     data.save(queryhastag,workingdic)

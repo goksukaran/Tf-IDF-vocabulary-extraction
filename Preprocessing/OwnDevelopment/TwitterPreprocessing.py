@@ -7,6 +7,7 @@ import pandas as pd
 import re as regex
 import nltk
 import os.path
+
 class ReadData():
     data = []
     processed_data = []
@@ -34,6 +35,7 @@ class TwitterCleanuper:
                                self.remove_usernames,
                                self.remove_na,
                                self.remove_special_chars,
+                               self.remove_retweets,
                                self.remove_numbers]:
             yield cleanup_method
     @staticmethod
@@ -60,8 +62,10 @@ class TwitterCleanuper:
 
     def remove_numbers(self, tweets):
         return TwitterCleanuper.remove_by_regex(tweets, regex.compile(r"\s?[0-9]+\.?[0-9]*"))
-    
-    
+    def remove_retweets(self,tweets):
+        for remove in map(lambda r: regex.compile(regex.escape(r)), ["RT"]):
+            tweets.loc[:, "text"].replace(remove, "", inplace=True)
+        return tweets
     
     
 class TwitterData_TokenStem(TwitterData_Cleansing):
@@ -91,15 +95,27 @@ class RemoveStopwords(TwitterData_TokenStem):
         self.processed_data = previous.processed_data
     def remove(self):
         stopwords=nltk.corpus.stopwords.words("english")
+        englishwords= nltk.corpus.words.words()
         def removestopwords(row):
             for w in row["tokenized_text"]: 
                 if w in stopwords:
+                   
                     row["tokenized_text"].remove(w)
                     #self.processed_data.append(w)
+            
+            for w in row["tokenized_text"]: 
+                if w not in englishwords:
+                    
+                    row["tokenized_text"].remove(w)
+                    #self.processed_data.append(w)
+            
+            
             return row["tokenized_text"]
-                
-        self.processed_data = self.processed_data.apply(removestopwords,axis=1)       
         
+            
+        self.processed_data = self.processed_data.apply(removestopwords,axis=1)
+
+          
 class SaveTxt(RemoveStopwords):
     def save(self,queryhastag,workingdic):
         os.chdir(workingdic)
