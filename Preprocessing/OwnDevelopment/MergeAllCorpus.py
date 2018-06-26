@@ -53,5 +53,11 @@ def CombineAll():
         df = pd.read_csv(file,index_col=None, header=0)
         list_.append(df)
     frame = pd.concat(list_)
+    #===========================================================================
+    # with open('merged.csv', "w",encoding='utf-8') as f:
+    #     writer = csv.writer(f)
+    #     writer.writerows(frame)
+    #===========================================================================
+    
     frame.to_csv("merged.csv", sep='\t',index=False)
 CombineAll()

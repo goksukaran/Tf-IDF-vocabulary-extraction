@@ -96,6 +96,7 @@ class RemoveStopwords(TwitterData_TokenStem):
     def remove(self):
         stopwords=nltk.corpus.stopwords.words("english")
         englishwords= nltk.corpus.words.words()
+        print(englishwords)
         def removestopwords(row):
             for w in row["tokenized_text"]: 
                 if w in stopwords:

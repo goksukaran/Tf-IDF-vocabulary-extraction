@@ -111,3 +111,4 @@ TWETTERKEY
 TwitterApi_Keys.json
 *.zip
 *.csv
+playground.py
