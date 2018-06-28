@@ -29,7 +29,7 @@ def SeriesConversion():
         print(i)
         SearchSingleHastagtoTxt(i,workingdic)
 
-#SeriesConversion()
+SeriesConversion()
 def CombineAll():
     Resultfilename="merged"
     
@@ -60,4 +60,4 @@ def CombineAll():
     #===========================================================================
     
     frame.to_csv("merged.csv", sep='\t',index=False)
-CombineAll()
+#CombineAll()

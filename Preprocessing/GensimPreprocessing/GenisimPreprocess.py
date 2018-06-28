@@ -29,7 +29,9 @@ for row in data.iterrows():
     #print(row[1][0])
     list.append(row[1][0])
     
-print(list[0])
+print(list[1])
+states_list = list[1].split(',')
+print(states_list)
 
 model = gensim.models.Word2Vec(list, min_count=1,seed=1,workers=1)
 #model.wv.vocab

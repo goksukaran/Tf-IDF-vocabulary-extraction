@@ -7,6 +7,7 @@ import pandas as pd
 import re as regex
 import nltk
 import os.path
+from future.backports.test.pystone import FALSE
 
 class ReadData():
     data = []
@@ -21,6 +22,8 @@ class ReadData():
 class TwitterData_Cleansing(ReadData):
     def __init__(self, previous):
         self.processed_data = previous.processed_data
+    def removesame(self):
+        self.processed_data=self.processed_data.drop_duplicates(subset=None, keep="first", inplace=False)
         
     def cleanup(self, cleanuper):
         t = self.processed_data
@@ -53,7 +56,7 @@ class TwitterCleanuper:
                                                                      "@", "%", "^", "*", "(", ")", "{", "}",
                                                                      "[", "]", "|", "/", "\\", ">", "<", "-",
                                                                      "!", "?", ".", "'",
-                                                                     "--", "---", "#"]):
+                                                                     "--", "---", "#","+"]):
             tweets.loc[:, "text"].replace(remove, "", inplace=True)
         return tweets
 
@@ -96,7 +99,6 @@ class RemoveStopwords(TwitterData_TokenStem):
     def remove(self):
         stopwords=nltk.corpus.stopwords.words("english")
         englishwords= nltk.corpus.words.words()
-        print(englishwords)
         def removestopwords(row):
             for w in row["tokenized_text"]: 
                 if w in stopwords:
@@ -115,7 +117,7 @@ class RemoveStopwords(TwitterData_TokenStem):
         
             
         self.processed_data = self.processed_data.apply(removestopwords,axis=1)
-
+        
           
 class SaveTxt(RemoveStopwords):
     def save(self,queryhastag,workingdic):
