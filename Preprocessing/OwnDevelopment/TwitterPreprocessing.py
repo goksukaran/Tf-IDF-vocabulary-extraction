@@ -24,6 +24,13 @@ class TwitterData_Cleansing(ReadData):
         self.processed_data = previous.processed_data
     def removesame(self):
         self.processed_data=self.processed_data.drop_duplicates(subset=None, keep="first", inplace=False)
+    def lowercase(self):
+        def makelower(row):
+            row["text"]=row["text"].lower())
+            #print(row["text"].lower())
+            return row
+
+        self.processed_data = self.processed_data.apply(makelower,axis=1)
         
     def cleanup(self, cleanuper):
         t = self.processed_data
