@@ -5,9 +5,10 @@ Created on 27 Jun 2018
 '''
 import nltk 
 import gensim
-from GenisimFuc import GenisimRun
+import pandas as pd
 
 import os 
+from IPython.core.profileapp import list_bundled_profiles
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 
@@ -17,28 +18,28 @@ Their forces have fought a civil war. But despite a peace deal last year ending 
 """
 
 sentences = nltk.sent_tokenize(sample)
-print(sentences)
 tokenized_sentences = [nltk.word_tokenize(sentence) for sentence in sentences]
 print(tokenized_sentences)
 
-genisimmodel=GenisimRun()
-data=genisimmodel.DataRead()
-print(data)
+parrentdirectory = os.path.abspath('..')
+data=pd.read_csv(parrentdirectory+"/Data/Raw/merged.csv")
 
+listholder=data.values.tolist()
+newlist=[]
+print(listholder)
+for sentence in listholder:
+    sentence=sentence[0].replace("'", "");
+    sentence=sentence.replace("[", "");
+    sentence=sentence.replace("]", "");
+    sentence=sentence.replace(" ", "");
+    newlist.append(list(sentence.split(",")))
+    #print(newlist)
+print(newlist[4])
 
-model = gensim.models.Word2Vec(tokenized_sentences, min_count=1,seed=1,workers=1)
-
-print(model.most_similar(positive=['Renewed'], topn=5))
-#===============================================================================
-# print(model.most_similar(positive=['Sudan'], topn=5))
-# model.most_similar(positive=['Sudan'], negative=['UN'], topn=5)
-# model.most_similar(positive=['Sudan', 'UN'], topn=5)
-#  
-# model.similarity('South', 'Sudan')
-# print(model.similarity('peace', 'Sudan'))
-# print(dir_path)
-# word_vectors = model.wv
-# model.save("name")
-# model2 = gensim.models.Word2Vec.load("name")
-# print(model2.similarity('peace', 'Sudan'))
-#===============================================================================
+model = gensim.models.Word2Vec(newlist, min_count=1,seed=1,workers=1)
+#model.wv.vocab
+print(model.most_similar(positive=['advice'], topn=5))
+for words in model.wv.vocab:
+    #print(words)
+    pass
+    

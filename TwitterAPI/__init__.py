@@ -83,7 +83,7 @@ def Saveextracthastags(search_text):
 def main():
   initilizeTweppy()
   Saveextracthastags("#smarthome")
-  #searchandsave(hastaglist);
+  searchandsave(hastaglist);
 if __name__== "__main__":
   main()
   print(hastaglist)
