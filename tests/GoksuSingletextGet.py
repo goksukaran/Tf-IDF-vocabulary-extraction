@@ -4,15 +4,15 @@ Created on 6 Jun 2018
 @author: goksukara
 '''
 import wikipedia
-
-import bs4
-import urllib.request
-
-webpage=str(urllib.request.urlopen("https://en.wikipedia.org/wiki/Building_automation").read())
-soup = bs4.BeautifulSoup(webpage)
-
-print(soup.get_text())
  
 ny = wikipedia.page("Building Automation")
-print(ny.section("Automation system"))
+#print(ny.content)
 #print (wikipedia.summary("Wikipedia"))
+
+file = open("testfile.txt", "w")
+print(ny.content)
+
+#file.write(str(ny.s))
+file.write("This is a test") 
+
+file.close()
