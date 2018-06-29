@@ -26,7 +26,7 @@ data=pd.read_csv(parrentdirectory+"/Data/Raw/merged.csv")
 
 listholder=data.values.tolist()
 newlist=[]
-print(listholder)
+print(listholder)  
 for sentence in listholder:
     sentence=sentence[0].replace("'", "");
     sentence=sentence.replace("[", "");
