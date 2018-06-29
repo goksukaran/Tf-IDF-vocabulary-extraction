@@ -26,7 +26,7 @@ class TwitterData_Cleansing(ReadData):
         self.processed_data=self.processed_data.drop_duplicates(subset=None, keep="first", inplace=False)
     def lowercase(self):
         def makelower(row):
-            row["text"]=row["text"].lower())
+            row["text"]=row["text"].lower()
             #print(row["text"].lower())
             return row
 
@@ -73,7 +73,7 @@ class TwitterCleanuper:
     def remove_numbers(self, tweets):
         return TwitterCleanuper.remove_by_regex(tweets, regex.compile(r"\s?[0-9]+\.?[0-9]*"))
     def remove_retweets(self,tweets):
-        for remove in map(lambda r: regex.compile(regex.escape(r)), ["RT"]):
+        for remove in map(lambda r: regex.compile(regex.escape(r)), ["rt"]):
             tweets.loc[:, "text"].replace(remove, "", inplace=True)
         return tweets
     
@@ -105,26 +105,50 @@ class RemoveStopwords(TwitterData_TokenStem):
         self.processed_data = previous.processed_data
     def remove(self):
         stopwords=nltk.corpus.stopwords.words("english")
-        englishwords= nltk.corpus.words.words()
+        #englishwords= nltk.corpus.words.words()
         def removestopwords(row):
             for w in row["tokenized_text"]: 
                 if w in stopwords:
-                   
+                    #print(w)
                     row["tokenized_text"].remove(w)
                     #self.processed_data.append(w)
             
-            for w in row["tokenized_text"]: 
-                if w not in englishwords:
-                    
-                    row["tokenized_text"].remove(w)
-                    #self.processed_data.append(w)
+            #===================================================================
+            # for w in row["tokenized_text"]: 
+            #     if w not in englishwords:
+            #         print(w)
+            #         row["tokenized_text"].remove(w)
+            #         #self.processed_data.append(w)
+            #===================================================================
             
             
             return row["tokenized_text"]
         
             
         self.processed_data = self.processed_data.apply(removestopwords,axis=1)
+
+    def removenontokized(self):
+        stopwords=nltk.corpus.stopwords.words("english")
+        englishwords= nltk.corpus.words.words()
+        def removestopwords(row):
+            for w in row["text"]: 
+                if w in stopwords:
+                   
+                    row["text"].remove(w)
+                    #self.processed_data.append(w)
+            
+            for w in row["text"]: 
+                if w not in englishwords:
+                    
+                    row["text"].remove(w)
+                    #self.processed_data.append(w)
+            
+            
+            return row["text"]
         
+            
+        self.processed_data = self.processed_data.apply(removestopwords,axis=1)
+   
           
 class SaveTxt(RemoveStopwords):
     def save(self,queryhastag,workingdic):

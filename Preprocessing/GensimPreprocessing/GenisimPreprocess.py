@@ -8,6 +8,7 @@ import gensim
 import pandas as pd
 
 import os 
+from IPython.core.profileapp import list_bundled_profiles
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 
@@ -18,21 +19,23 @@ Their forces have fought a civil war. But despite a peace deal last year ending 
 
 sentences = nltk.sent_tokenize(sample)
 tokenized_sentences = [nltk.word_tokenize(sentence) for sentence in sentences]
-#print(tokenized_sentences)
+#print(tokenized_sentences[1][1])
 
 parrentdirectory = os.path.abspath('..')
-data=pd.read_csv(parrentdirectory+"/Data/Gensim/Raw/#IIoT.csv")
+data=pd.read_csv(parrentdirectory+"/Data/Gensim/Raw/#buildingautomation.csv")
 
-list= []
-print(data.shape[0])
-for row in data.iterrows():
-    #print(row[1][0])
-    list.append(row[1][0])
-    
-print(list[1])
-states_list = list[1].split(',')
-print(states_list)
+listholder=data.values.tolist()
+newlist=[]
+#print(listholder[1])
+for sentence in listholder:
+    sentence=sentence[0].replace("'", "");
+    sentence=sentence.replace("[", "");
+    sentence=sentence.replace("]", "");
+    sentence=sentence.replace(" ", "");
+    newlist.append(list(sentence.split(",")))
+    #print(newlist)
+print(newlist[0][1])
 
-model = gensim.models.Word2Vec(list, min_count=1,seed=1,workers=1)
+model = gensim.models.Word2Vec(newlist, min_count=1,seed=1,workers=1)
 #model.wv.vocab
-#print(model.most_similar(positive=['BigData'], topn=5))
+print(model.most_similar(positive=['smahome'], topn=5))
