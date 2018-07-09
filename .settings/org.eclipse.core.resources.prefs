@@ -1,11 +1,4 @@
 eclipse.preferences.version=1
-encoding//pytextrank/docs/conf.py=utf-8
-encoding//pytextrank/pytextrank/pytextrank.py=utf-8
-encoding//pytextrank/scrub.py=utf-8
-encoding//pytextrank/stage1.py=utf-8
-encoding//pytextrank/stage2.py=utf-8
-encoding//pytextrank/stage3.py=utf-8
-encoding//pytextrank/stage4.py=utf-8
 encoding//tests/geosearch_test.py=utf-8
 encoding//tests/page_test.py=utf-8
 encoding//tests/search_test.py=utf-8
