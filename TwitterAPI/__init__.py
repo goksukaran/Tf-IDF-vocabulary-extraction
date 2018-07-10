@@ -12,7 +12,7 @@ except ImportError:
     import simplejson as json
 
 global hastaglist
-hastaglist= ['Artificialintelligence', 'Throwback', 'SpaceX', 'Space', 'PiHole', 'Security', 'VMware', 'vExpert', 'CyberSecurity', 'Health', 'Sensors', 'Robotics', 'SmartEnergy', 'WiFi', 'Smarthome', 'AR', 'AugmentedReality', 'ARTechnology', 'Techjobs', 'SmartNews', 'SmartCitiesWeek', 'smarthouse', 'mums', 'SMART2018', 'smartphones', 'Solar']
+hastaglist= ['AR', 'AugmentedReality', 'ARTechnology', 'Techjobs', 'SmartNews', 'SmartCitiesWeek', 'smarthouse', 'mums', 'SMART2018', 'smartphones', 'Solar']
 def searchandsave(hastaglist):
     for i in range(len(hastaglist)):
         search_text='#'+hastaglist[i]
