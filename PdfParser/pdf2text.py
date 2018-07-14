@@ -9,6 +9,7 @@ from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
 
 
+
 from io import StringIO
 
 def pdf_to_text(pdfname):
