@@ -1,14 +1,12 @@
+'''
+Created on 14 Jul 2018
 
-"""
-Extract PDF text using PDFMiner. Adapted from
-http://stackoverflow.com/questions/5725278/python-help-using-pdfminer-as-a-library
-"""
-
+@author: goksukara
+'''
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter#process_pdf
 from pdfminer.pdfpage import PDFPage
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
-import codecs
 
 
 from io import StringIO
@@ -37,7 +35,3 @@ def pdf_to_text(pdfname):
     sio.close()
 
     return text
-
-text=pdf_to_text('/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilization/PhytonCode/ExampleProjects/Pdfparser/pdfrw/Pdfs/BuildingautomationsystemsConceptsandtechnologyreview.pdf')
-file=codecs.open('testfile.txt', 'w', encoding='utf8')
-file.write(text)
