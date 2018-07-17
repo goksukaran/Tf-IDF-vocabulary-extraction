@@ -15,6 +15,8 @@ import sys
 import os
 import collections
 from gensim import corpora, models
+from collections import OrderedDict
+from operator import itemgetter  
 
 class TfIdf():
     global filename
@@ -25,25 +27,31 @@ class TfIdf():
         self.raw_corpus = []
         self.corpus_dict = corpora.Dictionary()
         self.document_name=collections.OrderedDict()
+        self.idf_results=collections.OrderedDict()
+        self.tfidf=models.TfidfModel()
     def add_document(self,doc_name,text):
         self.corpus_dict.add_documents(text)
         self.corpus_dict.save('/tmp/'+filename+'.dict')
         #self.document_name.append(doc_name)
-        print([self.corpus_dict.doc2bow(t) for t in text])
+        #print([self.corpus_dict.doc2bow(t) for t in text])
         tmp=[self.corpus_dict.doc2bow(t) for t in text]
         self.raw_corpus.append(tmp[0])
         
-        print(self.raw_corpus)
-        print(self.spesificwords)
+        #print(self.raw_corpus)
+        #print(self.spesificwords)
     def buildmodel(self):
         corpora.MmCorpus.serialize('/tmp/'+filename+'.mm', self.raw_corpus)
-        print(self.raw_corpus)
+        #print(self.raw_corpus)
         self.corpus_dict = corpora.Dictionary.load('/tmp/'+filename+'.dict')
         corpus = corpora.MmCorpus('/tmp/'+filename+'.mm')
-        tfidf = models.TfidfModel(corpus,normalize=True)
-        
-        print(tfidf.idfs)
+    
+        self.tfidf = models.TfidfModel(corpus,normalize=True)
+        self.idf_results=OrderedDict(sorted(self.tfidf.idfs.items(), key = itemgetter(1), reverse = True))
      
     def Saverelatedwords(self):
         self.spesificwords=self.corpus_dict
-        print(self.spesificwords)
+        #print(self.spesificwords)
+    def listnhighIdfs(self,n):
+        return list(self.idf_results.keys())[0:n]
+        
+        
