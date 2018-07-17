@@ -12,7 +12,7 @@ except ImportError:
     import simplejson as json
 
 global hastaglist
-hastaglist= ['AugmentedReality', 'ARTechnology', 'Techjobs', 'SmartNews', 'SmartCitiesWeek', 'smarthouse', 'mums', 'SMART2018', 'smartphones', 'Solar']
+hastaglist= []
 def searchandsave(hastaglist):
     for i in range(len(hastaglist)):
         search_text='#'+hastaglist[i]
@@ -24,7 +24,7 @@ def searchandsave(hastaglist):
        
         for tweet in tweepy.Cursor(api.search,q=search_text,count=1000000,
                                    lang="en",
-                                   since="2000-04-03").items(10000):
+                                   since="2000-04-03").items(1000):
           # print (tweet.created_at, tweet.text)
            csvWriter.writerow([tweet.text])
     
@@ -61,7 +61,7 @@ def Saveextracthastags(search_text):
    
     for tweet in tweepy.Cursor(api.search,q=search_text,count=100000,
                                lang="en",
-                               since="2000-04-03").items(10000):
+                               since="2000-04-03").items(1000):
         #csvWriter.writerow([tweet.created_at, tweet.text.encode('utf-8')])
        for i in range(0, len(tweet.entities.get('hashtags'))):
            
@@ -83,7 +83,7 @@ def Saveextracthastags(search_text):
     csvFile.close()   
 def main():
   initilizeTweppy()
-  #Saveextracthastags("#Buildingautomation")
+  Saveextracthastags("#wine")
   searchandsave(hastaglist);
 if __name__== "__main__":
   main()
