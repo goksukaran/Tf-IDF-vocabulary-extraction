@@ -83,7 +83,7 @@ def Saveextracthastags(search_text):
     csvFile.close()   
 def main():
   initilizeTweppy()
-  Saveextracthastags("#wine")
+  Saveextracthastags("#education")
   searchandsave(hastaglist);
 if __name__== "__main__":
   main()

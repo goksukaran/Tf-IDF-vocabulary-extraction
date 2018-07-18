@@ -52,6 +52,9 @@ class TfIdf():
         self.spesificwords=self.corpus_dict
         #print(self.spesificwords)
     def listnhighIdfs(self,n):
-        return list(self.idf_results.keys())[0:n]
+        
+        for words in list(self.idf_results.keys())[0:n]:
+            print(words)
+            print(self.corpus_dict[words])
         
         

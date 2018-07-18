@@ -5,7 +5,8 @@ Created on 15 Jul 2018
 '''
 from tfidf import TfIdf
 
-
+def addallfilesinpath(path):
+    pass
 
 if __name__ == "__main__":
     
