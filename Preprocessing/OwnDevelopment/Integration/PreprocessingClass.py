@@ -5,6 +5,7 @@ Created on 6 Aug 2018
 '''
 
 from gensim.parsing.preprocessing import remove_stopwords
+import pandas as pd
 class PreprocessingFunctions():
     processed_data = []
     def __init__(self, dataframe):
@@ -22,7 +23,12 @@ class PreprocessingFunctions():
     def add_document_dic(self):
         pass
     def save(self):
-        pass        
+        with open('Preprocessed.csv', 'a') as outfile:
+            self.processed_data.to_csv(outfile)
+            #writer = csv.writer(outfile)
+            #writer.writerow(self.processed_data)
+       
+    
     
     
 class Cleanupper():
