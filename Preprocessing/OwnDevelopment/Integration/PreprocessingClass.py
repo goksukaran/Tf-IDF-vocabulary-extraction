@@ -3,8 +3,9 @@ Created on 6 Aug 2018
 
 @author: goksukara
 '''
+
+from gensim.parsing.preprocessing import remove_stopwords
 class PreprocessingFunctions():
-    data = []
     processed_data = []
     def __init__(self, dataframe):
         self.processed_data = dataframe
@@ -18,6 +19,8 @@ class PreprocessingFunctions():
     
     def tokenization(self):
         pass
+    def add_document_dic(self):
+        pass
     def save(self):
         pass        
     
@@ -28,10 +31,10 @@ class Cleanupper():
                                ]:
             yield cleanup_method
     @staticmethod
-    def stopword_remove(tweets):
-        #tweets.loc[:, "text"].replace(regexp, "", inplace=True)
-        #print(tweets)
-        return tweets
+    def stopword_remove(sentence):
+        sentence=remove_stopwords(str(sentence))
+        #print(sentence)
+        return sentence
 
     def convert_lowercase(self):
         pass
