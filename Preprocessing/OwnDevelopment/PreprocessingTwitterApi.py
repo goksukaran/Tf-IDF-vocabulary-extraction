@@ -52,3 +52,19 @@ def SearchSingleHastagtoTxt(queryhastag,workingdic):
 #workingdic="/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilization/PhytonCode/Preprocessing/Data/Twitter/Raw"
 #SearchSingleHastagtoTxt("#buildingautomation.csv",workingdic)
 
+def inserttweets2corpus(filename,workingdic):
+    os.chdir(workingdic)
+    data = ReadData()
+    data.readdata(workingdic+"/"+filename)
+    
+    data = TwitterData_Cleansing(data)
+    data.removesame()
+    data.lowercase()
+    data.cleanup(TwitterCleanuper())
+    
+    raw_data = {'file_name': filename, 
+        'string': str(data.processed_data), 
+        }
+    df = pd.DataFrame(raw_data, columns = ['file_name', 'string'])
+    
+    

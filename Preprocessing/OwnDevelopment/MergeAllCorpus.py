@@ -6,7 +6,7 @@ Created on 22 Jun 2018
 import glob, os.path
 import pandas as pd
 import csv
-from PreprocessingTwitterApi import SearchSingleHastagtoTxt
+from PreprocessingTwitterApi import SearchSingleHastagtoTxt,inserttweets2corpus
 def SeriesConversion():
     rootdir = '/Data/Twitter/Raw/'
     extensions = ('*.csv')
@@ -60,4 +60,20 @@ def CombineAll():
     #===========================================================================
     
     frame.to_csv("merged.csv", sep='\t',index=False)
-CombineAll()
+#CombineAll()
+def Addtweet2corpus():
+    rootdir = '/Data/Twitter/Raw/'
+    extensions = ('*.csv')
+    parrentdirectory = os.path.abspath('..')
+    
+    workingdic=parrentdirectory+rootdir
+    os.chdir(parrentdirectory+rootdir)
+    filenamelist =[]
+    
+    for file in glob.glob(extensions):
+        #filenamelist.append(file)
+        print(file)
+        
+    
+    
+Addtweet2corpus()  
