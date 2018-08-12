@@ -6,7 +6,7 @@ Created on 22 Jun 2018
 import glob, os.path
 import pandas as pd
 import csv
-from PreprocessingTwitterApi import SearchSingleHastagtoTxt,inserttweets2corpus
+from PreprocessingTwitterApi import SearchSingleHastagtoTxt
 def SeriesConversion():
     rootdir = '/Data/Twitter/Raw/'
     extensions = ('*.csv')

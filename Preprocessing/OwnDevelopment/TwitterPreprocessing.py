@@ -162,8 +162,3 @@ class SaveTxt(RemoveStopwords):
         directoryfile=parrentdirectory+"/Preprocessed/"+queryhastag
         print(directoryfile)
         self.processed_data.to_csv(directoryfile,index=False)
-    def convert2corpus(self,queryhastag):
-        with open(convercprpusdic,'a') as outfile:
-            
-        
-          
