@@ -4,7 +4,6 @@ Extract PDF text using PDFMiner. Adapted from
 http://stackoverflow.com/questions/5725278/python-help-using-pdfminer-as-a-library
 """
 from pdf2text import pdf_to_text
-from Preprocessing import Preprocessing
 import codecs
 import glob, os.path
 import pandas as pd
@@ -33,7 +32,7 @@ def save(filename,text):
     print(df.to_string(index=False))
     with open(corpuspath, 'a') as outfile:
         df.to_csv(outfile,sep='\t',index=False,header=None)
-        pass
+        
     
         
     

@@ -8,7 +8,7 @@ import os.path
 
 
 
-from TwitterPreprocessing import ReadData,TwitterData_Cleansing,TwitterCleanuper,TwitterData_TokenStem,RemoveStopwords,SaveTxt
+from TwitterPreprocessing import ReadData,TwitterData_Cleansing,TwitterCleanuper,TwitterData_TokenStem,RemoveStopwords,SaveTxt,Insert2corpus
 
 
 
@@ -52,7 +52,7 @@ def SearchSingleHastagtoTxt(queryhastag,workingdic):
 #workingdic="/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilization/PhytonCode/Preprocessing/Data/Twitter/Raw"
 #SearchSingleHastagtoTxt("#buildingautomation.csv",workingdic)
 
-def inserttweets2corpus(filename,workingdic):
+def inserttweets2corpus(filename,workingdic,output):
     os.chdir(workingdic)
     data = ReadData()
     data.readdata(workingdic+"/"+filename)
@@ -60,14 +60,11 @@ def inserttweets2corpus(filename,workingdic):
     data = TwitterData_Cleansing(data)
     data.removesame()
     data.lowercase()
+    print(data.processed_data)
     data.cleanup(TwitterCleanuper())
+    print(data.processed_data)
+    data=Insert2corpus(data)
+    data.insert(filename,output)
     
-    data=RemoveStopwords(data)
-    data.remove()
-    
-    raw_data = {'file_name': filename, 
-        'string': str(data.processed_data), 
-        }
-    df = pd.DataFrame(raw_data, columns = ['file_name', 'string'])
     
     
