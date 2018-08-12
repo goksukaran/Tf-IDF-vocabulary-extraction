@@ -27,9 +27,9 @@ def extractpdf(filename):
     
 def save(filename,text):
     
-    raw_data =[[filename,text]]
+    raw_data =[[filename,text.encode("utf-8")]]
     #print(filename)
-    df = pd.DataFrame(raw_data,columns=None,index=None)
+    df = pd.DataFrame(raw_data,columns=['Filename','Text'],index=None)
     print(df.to_string(index=False))
     with open(corpuspath, 'a') as outfile:
         df.to_csv(outfile,sep='\t',index=False,header=None)
