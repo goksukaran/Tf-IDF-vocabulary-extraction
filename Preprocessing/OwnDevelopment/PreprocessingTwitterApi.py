@@ -62,6 +62,9 @@ def inserttweets2corpus(filename,workingdic):
     data.lowercase()
     data.cleanup(TwitterCleanuper())
     
+    data=RemoveStopwords(data)
+    data.remove()
+    
     raw_data = {'file_name': filename, 
         'string': str(data.processed_data), 
         }

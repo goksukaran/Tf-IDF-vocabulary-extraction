@@ -8,6 +8,10 @@ import re as regex
 import nltk
 import os.path
 from future.backports.test.pystone import FALSE
+from gensim.models.deprecated.word2vec import outfile
+
+global convercprpusdic
+convercprpusdic='/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilization/PhytonCode/Data/corpus.csv'
 
 class ReadData():
     data = []
@@ -158,4 +162,8 @@ class SaveTxt(RemoveStopwords):
         directoryfile=parrentdirectory+"/Preprocessed/"+queryhastag
         print(directoryfile)
         self.processed_data.to_csv(directoryfile,index=False)
-       
+    def convert2corpus(self,queryhastag):
+        with open(convercprpusdic,'a') as outfile:
+            
+        
+          

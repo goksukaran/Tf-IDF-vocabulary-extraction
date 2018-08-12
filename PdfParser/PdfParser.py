@@ -6,6 +6,9 @@ http://stackoverflow.com/questions/5725278/python-help-using-pdfminer-as-a-libra
 from pdf2text import pdf_to_text
 from Preprocessing import Preprocessing
 import codecs
+import glob, os.path
+import pandas as pd
+import numpy as np
 #===============================================================================
 # text=pdf_to_text('/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilization/PhytonCode/ExampleProjects/Pdfparser/pdfrw/Pdfs/BuildingautomationsystemsConceptsandtechnologyreview.pdf')
 # 
@@ -15,6 +18,44 @@ import codecs
 # file=codecs.open('testfile.txt', 'w', encoding='utf8')
 # file.write(text)
 #===============================================================================
+corpuspath='/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilization/PhytonCode/Data/corpus.csv'
+pdfpath='/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilization/PhytonCode/PdfParser/Pdfs'
 
 def extractpdf(filename):
     text=pdf_to_text(filename)
+    return text
+    
+def save(filename,text):
+    
+    raw_data =[[filename,text]]
+    #print(filename)
+    df = pd.DataFrame(raw_data,columns=None,index=None)
+    print(df.to_string(index=False))
+    with open(corpuspath, 'a') as outfile:
+        df.to_csv(outfile,sep='\t',index=False,header=None)
+        pass
+    
+        
+    
+class Preprocessing():
+    processedtext=""
+    def __init__(self, text):
+        self.processedtext = text
+        
+
+   
+extensions = ('*.pdf')
+  
+filenamelist =[]
+os.chdir(pdfpath)   
+for filename in glob.glob(extensions):
+     
+    #filenamelist.append(file)
+    #print(filename)
+    text=extractpdf(filename)
+    prepocessing=Preprocessing(text)
+    #print(prepocessing.processedtext)
+    save(filename,text)
+        
+
+    
