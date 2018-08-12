@@ -9,12 +9,12 @@ from oaipmh.metadata import MetadataRegistry, oai_dc_reader
 import json
 import bz2
 from numpy import record
-baseurl='http://cogprints.ecs.soton.ac.uk/perl/oai2?'
-extantionurl=''
+baseurl='http://broker10.fcla.edu/cgi/b/broker20/broker20?'
+savedic='/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilization/PhytonCode/Data/Corpus.csv '
 
 if __name__ == "__main__":
    
-    url = baseurl+extantionurl
+    url = baseurl
     registry = MetadataRegistry()
     registry.registerReader('oai_dc', oai_dc_reader)
     client = Client(url, registry)
@@ -23,8 +23,8 @@ if __name__ == "__main__":
         print(word)
     #Write to file
     #with bz2.BZ2File('out.json', 'wb') as outfile:
-    with open('data.txt', 'w') as outfile:
-         for record in client.listRecords(metadataPrefix='oai_dc',set='econ'):
+    with open(savedic, 'a') as outfile:
+         for record in client.listRecords(metadataPrefix='oai_dc',set='physics:math-ph'):
              header, metadata, _ = record
              doc = {}
              #Extract identifier
@@ -33,8 +33,9 @@ if __name__ == "__main__":
              doc["title"] = "\n".join(metadata["title"])
              doc["abstract"] = "\n".join(metadata["description"])
              doc["authors"] = metadata["creator"]
+             
              #Write into outfile
-             print(doc)
+             #print(doc)
              #json.dump(doc,outfile)
              #outfile.write(jsonsave)
              #outfile.write("\n")
