@@ -22,11 +22,10 @@ class PreprocessingFunctions():
         pass
     def add_document_dic(self):
         pass
-    def save(self):
-        with open('Preprocessed.csv', 'a') as outfile:
-            self.processed_data.to_csv(outfile)
-            #writer = csv.writer(outfile)
-            #writer.writerow(self.processed_data)
+    def save(self,filename):
+        with open(filename, 'a',) as outfile:
+            self.processed_data.to_csv(outfile,index=False,sep='\t')
+            print(self.processed_data.columns.values)
        
     
     
