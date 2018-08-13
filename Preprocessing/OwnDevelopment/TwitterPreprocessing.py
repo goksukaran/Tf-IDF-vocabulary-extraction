@@ -9,6 +9,10 @@ import nltk
 import os.path
 from future.backports.test.pystone import FALSE
 
+
+global convercprpusdic
+convercprpusdic='/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilization/PhytonCode/Data/corpus.csv'
+
 class ReadData():
     data = []
     processed_data = []
@@ -46,7 +50,8 @@ class TwitterCleanuper:
                                self.remove_na,
                                self.remove_special_chars,
                                self.remove_retweets,
-                               self.remove_numbers]:
+                               self.remove_numbers,
+                               self.remove_tabspace]:
             yield cleanup_method
     @staticmethod
     def remove_by_regex(tweets, regexp):
@@ -76,7 +81,8 @@ class TwitterCleanuper:
         for remove in map(lambda r: regex.compile(regex.escape(r)), ["rt"]):
             tweets.loc[:, "text"].replace(remove, "", inplace=True)
         return tweets
-    
+    def remove_tabspace(self,tweets):
+        return TwitterCleanuper.remove_by_regex(tweets, regex.compile("/t"))
     
 class TwitterData_TokenStem(TwitterData_Cleansing):
     def __init__(self, previous):
@@ -149,7 +155,18 @@ class RemoveStopwords(TwitterData_TokenStem):
             
         self.processed_data = self.processed_data.apply(removestopwords,axis=1)
    
-          
+class Insert2corpus(TwitterData_Cleansing):
+    global corpuspath
+    corpuspath='/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilization/PhytonCode/Data/'
+    
+    def insert(self,filename,output):
+        
+        text=str(self.processed_data)
+        raw_data =[[filename,text.encode("utf-8")]]
+        df = pd.DataFrame(raw_data,columns=['Filename','Text'],index=None)
+        with open(corpuspath+output, 'a') as outfile:
+            df.to_csv(outfile,sep='\t',index=False,header=None)
+                  
 class SaveTxt(RemoveStopwords):
     def save(self,queryhastag,workingdic):
         os.chdir(workingdic)
@@ -158,4 +175,3 @@ class SaveTxt(RemoveStopwords):
         directoryfile=parrentdirectory+"/Preprocessed/"+queryhastag
         print(directoryfile)
         self.processed_data.to_csv(directoryfile,index=False)
-       

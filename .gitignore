@@ -106,6 +106,7 @@ FOLDERS
 Data/
 ExampleProjects/
 TensorFlowWord2vec/log
+PdfParser/Pdfs
 
 TWETTERKEY
 TwitterApi_Keys.json
@@ -114,18 +115,16 @@ TwitterApi_Keys.json
 playground.py
 TensorFlowWord2vec/Exampleproject
 name
-<<<<<<< HEAD
-OAI-PMH bulkdata/data.txt
-OAI-PMH bulkdata/out.json
-PdfParser/testfile.txt
-tests/testfile.txt
-TF-IDF/Pdfs/BuildingautomationsystemsConceptsandtechnologyreview.pdf
-TF-IDF/Pdfs/wagoBuildingAutomationOverview.pdf
-=======
+
 testfile.txt
-PdfParser/Pdfs
 TF-IDF/Pdfs/
 data.txt
 out.json
->>>>>>> TF-IDF
-3D machine vision in IoT for factory and building automation -Invited-.pdf
+
+
+OAI-PMH bulkdata/data.txt
+OAI-PMH bulkdata/out.json
+PdfParser/testfile.txt
+
+
+
