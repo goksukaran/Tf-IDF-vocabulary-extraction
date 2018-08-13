@@ -42,7 +42,7 @@ class TwitterData_Cleansing(ReadData):
             t = cleanup_method(t)
 
         self.processed_data = t    
-        
+         
 class TwitterCleanuper:
     def iterate(self):
         for cleanup_method in [self.remove_urls,
