@@ -13,6 +13,7 @@ class PreprocessingFunctions():
        
     def cleanup(self, cleanuper):
         t = self.processed_data
+        print(self.processed_data)
         for cleanup_method in cleanuper.iterate():
             t = cleanup_method(t)
 
@@ -24,20 +25,20 @@ class PreprocessingFunctions():
         pass
     def save(self,filename):
         with open(filename, 'a',) as outfile:
-            self.processed_data.to_csv(outfile,index=False,sep='\t')
-            print(self.processed_data.columns.values)
+            self.processed_data.to_csv(outfile,index=False,sep='\t',header=None)
+           
        
     
     
     
 class Cleanupper():
     def iterate(self):
-        for cleanup_method in [self.stopword_remove,
+        for cleanup_method in [
                                ]:
             yield cleanup_method
     @staticmethod
     def stopword_remove(sentence):
-        sentence=remove_stopwords(str(sentence))
+        sentence=remove_stopwords()
         #print(sentence)
         return sentence
 
