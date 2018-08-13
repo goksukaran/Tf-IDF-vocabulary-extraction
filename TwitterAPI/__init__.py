@@ -16,6 +16,7 @@ hastaglist= []
 def searchandsave(hastaglist):
     for i in range(len(hastaglist)):
         search_text='#'+hastaglist[i]
+        print(hastaglist[i])
         # Open/Create a file to append data
         csvFile = open("data/"+search_text+'.csv', 'a', encoding='UTF-8')
         #Use csv Writer
@@ -60,7 +61,7 @@ def Saveextracthastags(search_text):
    
     for tweet in tweepy.Cursor(api.search,q=search_text,count=100000,
                                lang="en",
-                               since="2000-04-03").items(10000):
+                               since="2000-04-03").items(1000):
         #csvWriter.writerow([tweet.created_at, tweet.text.encode('utf-8')])
        for i in range(0, len(tweet.entities.get('hashtags'))):
            
@@ -82,8 +83,8 @@ def Saveextracthastags(search_text):
     csvFile.close()   
 def main():
   initilizeTweppy()
-  Saveextracthastags("#smarthome")
-  #searchandsave(hastaglist);
+  Saveextracthastags("#woman")
+  searchandsave(hastaglist);
 if __name__== "__main__":
   main()
   print(hastaglist)

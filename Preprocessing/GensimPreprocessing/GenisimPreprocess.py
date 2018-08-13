@@ -22,7 +22,7 @@ tokenized_sentences = [nltk.word_tokenize(sentence) for sentence in sentences]
 #print(tokenized_sentences[1][1])
 
 parrentdirectory = os.path.abspath('..')
-data=pd.read_csv(parrentdirectory+"/Data/Gensim/Raw/#buildingautomation.csv")
+data=pd.read_csv(parrentdirectory+"/Data/Gensim/Raw/merged.csv")
 
 listholder=data.values.tolist()
 newlist=[]
@@ -32,10 +32,16 @@ for sentence in listholder:
     sentence=sentence.replace("[", "");
     sentence=sentence.replace("]", "");
     sentence=sentence.replace(" ", "");
+    sentence=sentence.replace("\t", "")
     newlist.append(list(sentence.split(",")))
     #print(newlist)
-print(newlist[0][1])
+print(newlist[0])
 
 model = gensim.models.Word2Vec(newlist, min_count=1,seed=1,workers=1)
 #model.wv.vocab
-print(model.most_similar(positive=['smahome'], topn=5))
+print(model.most_similar(positive=['good'], topn=5))
+model.save("model")
+#===============================================================================
+# for i in model.wv.vocab:
+#     print(i)
+#===============================================================================

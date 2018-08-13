@@ -49,6 +49,6 @@ def SearchSingleHastagtoTxt(queryhastag,workingdic):
     data=SaveTxt(data)
     data.save(queryhastag,workingdic)
     
-workingdic="/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilization/PhytonCode/Preprocessing/Data/Twitter/Raw"
-SearchSingleHastagtoTxt("#buildingautomation.csv",workingdic)
+#workingdic="/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilization/PhytonCode/Preprocessing/Data/Twitter/Raw"
+#SearchSingleHastagtoTxt("#buildingautomation.csv",workingdic)
 
