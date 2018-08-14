@@ -7,6 +7,7 @@ Created on 6 Aug 2018
 from gensim.parsing.preprocessing import remove_stopwords
 from gensim.utils import tokenize
 from gensim.parsing.porter import PorterStemmer
+import nltk 
 import pandas as pd
 class PreprocessingFunctions():
     processed_data = []
@@ -18,6 +19,7 @@ class PreprocessingFunctions():
         self.textcolumn=self.processed_data.loc[:,'text']
     def IterateoverRow(self):
         for index, row, in self.processed_data.iterrows():  
+            print(row['text'])
             row['text']=self.cleanup(Cleanupper(),row['text'])
             #print(row['text'])
        
@@ -27,7 +29,7 @@ class PreprocessingFunctions():
         for cleanup_method in cleanuper.iterate():
             row = cleanup_method(row)
         #self.processed_data.loc[:,'text'] = t
-        print(row)
+        #print(row)
         return row
     def add_document_dic(self):
         pass
@@ -64,7 +66,10 @@ class Cleanupper():
         sentence=p.stem_sentence(sentence)
         return str(sentence)
     def tokenize(self,sentence):
+        sentences = nltk.sent_tokenize(sentence)
+        tokenized_sentences = [nltk.word_tokenize(sentence) for sentence in sentences]
         #print(sentence)
-        sentence=list(tokenize(sentence))
+        #sentence=list(tokenize(sentence))
         #print(sentence)
-        return sentence   
+        return tokenized_sentences
+    def add_document(self,sentence):   

@@ -19,7 +19,7 @@ def pdf_to_text(pdfname):
     sio = StringIO()
     codec = 'utf-8'
     laparams = LAParams()
-    device = TextConverter(rsrcmgr, sio, codec=codec, laparams=laparams)
+    device = TextConverter(rsrcmgr, sio, laparams=laparams)
     interpreter = PDFPageInterpreter(rsrcmgr, device)
 
     # Extract text

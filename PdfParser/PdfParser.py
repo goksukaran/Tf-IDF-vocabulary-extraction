@@ -27,11 +27,11 @@ def extractpdf(filename):
 def save(filename,text):
     
     raw_data =[[filename,text.encode("utf-8")]]
-    print(text.encode("utf-8"))
+    #print(text.encode("utf-8"))
     df = pd.DataFrame(raw_data,columns=['Filename','Text'],index=None)
     print(df.to_string(index=False))
     with open(corpuspath, 'a') as outfile:
-        df.to_csv(outfile,sep='\t',index=False,header=None,encoding='utf-8')
+        df.to_csv(outfile,sep='\t',index=False,header=None)
         
     
         
@@ -52,7 +52,8 @@ for filename in glob.glob(extensions):
     #filenamelist.append(file)
     #print(filename)
     text=extractpdf(filename)
-    prepocessing=Preprocessing(text)
+    print(text)
+    #prepocessing=Preprocessing(text)
     #print(prepocessing.processedtext)
     save(filename,text)
         
