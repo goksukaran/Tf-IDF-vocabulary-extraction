@@ -59,6 +59,7 @@ class Cleanupper():
         sentence=p.stem_sentence(sentence)
         return sentence 
     def tokenize(self,sentence):
-        sentence=tokenize(sentence)
-        print(sentence.text)
+        print(sentence)
+        sentence=list(tokenize(sentence))
+        print(sentence)
         return sentence   

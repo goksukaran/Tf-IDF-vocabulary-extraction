@@ -13,5 +13,4 @@ for chunck_df in pd.read_csv(corpuspath+filename+'.csv',dtype={'file_name': str,
     dataprocesing.IterateoverRow()
     
     
-    #dataprocesing.save(filename+'_preprocessed.csv')
-    
+    dataprocesing.save(filename+'_preprocessed.csv')
