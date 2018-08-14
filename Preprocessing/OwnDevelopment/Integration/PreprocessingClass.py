@@ -5,6 +5,7 @@ Created on 6 Aug 2018
 '''
 
 from gensim.parsing.preprocessing import remove_stopwords
+from gensim.utils import tokenize
 from gensim.parsing.porter import PorterStemmer
 import pandas as pd
 class PreprocessingFunctions():
@@ -25,11 +26,9 @@ class PreprocessingFunctions():
         
         for cleanup_method in cleanuper.iterate():
             row = cleanup_method(row)
-            print(row)
+            #print(row)
         #self.processed_data.loc[:,'text'] = t
     
-    def tokenization(self):
-        pass
     def add_document_dic(self):
         pass
     def save(self,filename):
@@ -44,13 +43,13 @@ class Cleanupper():
     p = PorterStemmer()
     def iterate(self):
         for cleanup_method in [self.convert_lowercase,
-                               self.stopword_remove
+                               self.stopword_remove,
+                               self.tokenize
                                ]:
             yield cleanup_method
     @staticmethod
     def stopword_remove(sentence):
         sentence=remove_stopwords(sentence)
-        #print(sentence)
         return sentence
 
     def convert_lowercase(self,sentence):
@@ -58,4 +57,8 @@ class Cleanupper():
         return sentence
     def porter_stemmer(self,sentence):
         sentence=p.stem_sentence(sentence)
-        return sentence    
+        return sentence 
+    def tokenize(self,sentence):
+        sentence=tokenize(sentence)
+        print(sentence.text)
+        return sentence   
