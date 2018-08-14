@@ -18,7 +18,7 @@ class PreprocessingFunctions():
         self.textcolumn=self.processed_data.loc[:,'text']
     def IterateoverRow(self):
         for index, row, in self.processed_data.iterrows():  
-            self.cleanup(Cleanupper(),row['text'])
+            row['text']=self.cleanup(Cleanupper(),row['text'])
             #print(row['text'])
        
     def cleanup(self, cleanuper,row):
@@ -26,40 +26,45 @@ class PreprocessingFunctions():
         
         for cleanup_method in cleanuper.iterate():
             row = cleanup_method(row)
-            #print(row)
         #self.processed_data.loc[:,'text'] = t
-    
+        print(row)
+        return row
     def add_document_dic(self):
         pass
     def save(self,filename):
         with open(filename, 'a',) as outfile:
-            self.processed_data.to_csv(outfile,index=False,sep='\t',header=None)
+            self.processed_data.to_csv(outfile,index=False,sep='\t',header=None,encoding='utf-8')
            
        
     
     
     
 class Cleanupper():
+    global p
     p = PorterStemmer()
     def iterate(self):
-        for cleanup_method in [self.convert_lowercase,
-                               self.stopword_remove,
+        for cleanup_method in [self.stopword_remove,
+                               self.convert_lowercase,
+                               self.porter_stemmer,
                                self.tokenize
                                ]:
             yield cleanup_method
     @staticmethod
     def stopword_remove(sentence):
+        #print(sentence)
         sentence=remove_stopwords(sentence)
         return sentence
 
     def convert_lowercase(self,sentence):
+        #print(sentence)
         sentence=sentence.lower()
         return sentence
     def porter_stemmer(self,sentence):
+        #print(sentence)
         sentence=p.stem_sentence(sentence)
-        return sentence 
+        return str(sentence)
     def tokenize(self,sentence):
-        print(sentence)
+        #print(sentence)
         sentence=list(tokenize(sentence))
-        print(sentence)
+        #print(sentence)
         return sentence   

@@ -17,7 +17,7 @@ class ReadData():
     data = []
     processed_data = []
     def readdata(self,csv_file):
-        self.data = pd.read_csv(csv_file,names=["text"],dtype={"text":"str"})
+        self.data = pd.read_csv(csv_file,names=["text"],dtype={"text":str})
         
         self.processed_data = self.data
         self.wordlist = []
