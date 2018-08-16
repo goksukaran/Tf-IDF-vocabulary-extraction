@@ -72,4 +72,3 @@ class Cleanupper():
         #sentence=list(tokenize(sentence))
         #print(sentence)
         return tokenized_sentences
-    def add_document(self,sentence):   
