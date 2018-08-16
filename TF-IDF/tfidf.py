@@ -19,7 +19,7 @@ from collections import OrderedDict
 from operator import itemgetter  
 
 class TfIdf():
-    global filename
+    global filenamedic
     filename="ad"
     def __init__(self):
         self.weighted = False
@@ -35,6 +35,7 @@ class TfIdf():
         #self.document_name.append(doc_name)
         #print([self.corpus_dict.doc2bow(t) for t in text])
         tmp=[self.corpus_dict.doc2bow(t) for t in text]
+        print(tmp)
         self.raw_corpus.append(tmp[0])
         
         #print(self.raw_corpus)
