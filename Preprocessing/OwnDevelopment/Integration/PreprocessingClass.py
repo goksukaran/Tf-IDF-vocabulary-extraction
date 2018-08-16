@@ -9,19 +9,23 @@ from gensim.utils import tokenize
 from gensim.parsing.porter import PorterStemmer
 import nltk 
 import pandas as pd
+import sys
+sys.path.append('/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilization/PhytonCode/TF-IDF')
+
 class PreprocessingFunctions():
     processed_data = []
     filenamecolumn=[]
     textcolumn=[]
-    def __init__(self, dataframe):
+    def __init__(self, dataframe,):
         self.processed_data = dataframe
         self.filenamecolumn=self.processed_data.loc[:,'file_name']
         self.textcolumn=self.processed_data.loc[:,'text']
     def IterateoverRow(self):
         for index, row, in self.processed_data.iterrows():  
-            print(row['text'])
+           
             row['text']=self.cleanup(Cleanupper(),row['text'])
             #print(row['text'])
+            return row['text']
        
     def cleanup(self, cleanuper,row):
         #print(self.processed_data.loc[:,'text'])
@@ -30,6 +34,7 @@ class PreprocessingFunctions():
             row = cleanup_method(row)
         #self.processed_data.loc[:,'text'] = t
         #print(row)
+       
         return row
     def add_document_dic(self):
         pass

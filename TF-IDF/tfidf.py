@@ -21,7 +21,7 @@ from operator import itemgetter
 class TfIdf():
     global filenamedic
     filename="ad"
-    def __init__(self):
+    def __init__(self,filedic):
         self.weighted = False
         self.spesificwords=corpora.Dictionary()
         self.raw_corpus = []
@@ -29,22 +29,22 @@ class TfIdf():
         self.document_name=collections.OrderedDict()
         self.idf_results=collections.OrderedDict()
         self.tfidf=models.TfidfModel()
-    def add_document(self,doc_name,text):
+        self.filedic=filedic
+    def add_document(self,text):
         self.corpus_dict.add_documents(text)
-        self.corpus_dict.save('/tmp/'+filename+'.dict')
+        self.corpus_dict.save(self.filedic+'.dict')
         #self.document_name.append(doc_name)
         #print([self.corpus_dict.doc2bow(t) for t in text])
         tmp=[self.corpus_dict.doc2bow(t) for t in text]
-        print(tmp)
         self.raw_corpus.append(tmp[0])
         
         #print(self.raw_corpus)
         #print(self.spesificwords)
     def buildmodel(self):
-        corpora.MmCorpus.serialize('/tmp/'+filename+'.mm', self.raw_corpus)
+        corpora.MmCorpus.serialize(self.filedic+'.mm', self.raw_corpus)
         #print(self.raw_corpus)
-        self.corpus_dict = corpora.Dictionary.load('/tmp/'+filename+'.dict')
-        corpus = corpora.MmCorpus('/tmp/'+filename+'.mm')
+        self.corpus_dict = corpora.Dictionary.load(self.filedic+'.dict')
+        corpus = corpora.MmCorpus(self.filedic+'.mm')
     
         self.tfidf = models.TfidfModel(corpus,normalize=True)
         self.idf_results=OrderedDict(sorted(self.tfidf.idfs.items(), key = itemgetter(1), reverse = True))
