@@ -72,4 +72,6 @@ def integrationTweets(dataframe):
     data=Intergrationpreprocessing(dataframe)
     data.removesame()
     data.lowercase()
+    data.cleanup(TwitterCleanuper())
+    data.IterateoverRow()
     return data.returnstring()   
