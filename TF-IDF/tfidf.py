@@ -37,12 +37,12 @@ class TfIdf():
         #print([self.corpus_dict.doc2bow(t) for t in text])
         tmp=[self.corpus_dict.doc2bow(t) for t in text]
         self.raw_corpus.append(tmp[0])
-        
+        corpora.MmCorpus.serialize(self.filedic+'.mm', self.raw_corpus)
         #print(self.raw_corpus)
         #print(self.spesificwords)
     def buildmodel(self):
-        corpora.MmCorpus.serialize(self.filedic+'.mm', self.raw_corpus)
-        #print(self.raw_corpus)
+        
+        print(self.raw_corpus)
         self.corpus_dict = corpora.Dictionary.load(self.filedic+'.dict')
         corpus = corpora.MmCorpus(self.filedic+'.mm')
     
@@ -55,7 +55,7 @@ class TfIdf():
     def listnhighIdfs(self,n):
         
         for words in list(self.idf_results.keys())[0:n]:
-            print(words)
+            #print(words)
             print(self.corpus_dict[words])
         
         

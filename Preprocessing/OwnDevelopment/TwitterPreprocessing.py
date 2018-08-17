@@ -161,7 +161,7 @@ class Insert2corpus(TwitterData_Cleansing):
     
     def insert(self,filename,output):
         
-        text=self.processed_data
+        text=self.processed_data["text"]
         raw_data =[[filename,text.encode("utf-8")]]
         df = pd.DataFrame(raw_data,columns=['Filename','Text'],index=None)
         with open(corpuspath+output, 'a') as outfile:
