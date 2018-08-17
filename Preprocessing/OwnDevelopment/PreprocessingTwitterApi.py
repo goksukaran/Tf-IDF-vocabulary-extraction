@@ -10,6 +10,7 @@ import os.path
 
 from TwitterPreprocessing import ReadData,TwitterData_Cleansing,TwitterCleanuper,TwitterData_TokenStem,RemoveStopwords,SaveTxt,Insert2corpus
 
+from IntegrationTwitterprepocessing import Intergrationpreprocessing
 
 
 # plotly configuration
@@ -67,4 +68,8 @@ def inserttweets2corpus(filename,workingdic,output):
     data.insert(filename,output)
     
     
-    
+def integrationTweets(dataframe):
+    data=Intergrationpreprocessing(dataframe)
+    data.removesame()
+    data.lowercase()
+    return data.returnstring()   
