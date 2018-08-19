@@ -52,10 +52,10 @@ for filename in glob.glob(extensions):
     #filenamelist.append(file)
     #print(filename)
     text=extractpdf(filename)
-    print(text)
+    print(text.encode("utf-8"))
     #prepocessing=Preprocessing(text)
     #print(prepocessing.processedtext)
-    save(filename,text)
+    #save(filename,text)
         
 
     
