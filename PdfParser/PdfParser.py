@@ -41,8 +41,11 @@ class Preprocessing():
     def __init__(self, text):
         self.processedtext = text
         
-
-   
+    def Removenewlines(self):
+        self.processedtext=self.processedtext.strip()
+        self.processedtext=self.processedtext.replace('\n','')
+        self.processedtext=self.processedtext.replace('\t','')
+       
 extensions = ('*.pdf')
   
 filenamelist =[]
@@ -51,11 +54,13 @@ for filename in glob.glob(extensions):
      
     #filenamelist.append(file)
     #print(filename)
-    text=extractpdf(filename)
-    print(text.encode("utf-8"))
-    #prepocessing=Preprocessing(text)
+    text=str(extractpdf(filename))
+    
+    prepocessing=Preprocessing(text)
+    prepocessing.Removenewlines()
+    print(prepocessing.processedtext)
     #print(prepocessing.processedtext)
-    #save(filename,text)
+    save(filename,text)
         
 
     

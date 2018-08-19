@@ -24,13 +24,13 @@ def Addtweet2corpus():
         dataframe=pd.read_csv(filename,names=["text"],dtype={"text":str})
         
         onelinetext=integrationTweets(dataframe)
-        print(onelinetext)
-        raw_data =[[filename,onelinetext.encode("utf-8")]]
+        #print(onelinetext)
+        raw_data =[[filename.encode("utf-8"),onelinetext.encode("utf-8")]]
     #print(text.encode("utf-8"))
         df = pd.DataFrame(raw_data,index=None)
         #print(df.to_string(index=False))
         with open(corpuspath, 'a') as outfile:
-            df.to_csv(outfile,sep='\t',index=False,header=None)
+            df.to_csv(outfile,sep='\t',index=False,header=None, encoding="utf-8")
         
     
     
