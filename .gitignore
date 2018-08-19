@@ -106,6 +106,7 @@ FOLDERS
 Data/
 ExampleProjects/
 TensorFlowWord2vec/log
+PdfParser/Pdfs
 
 TWETTERKEY
 TwitterApi_Keys.json
