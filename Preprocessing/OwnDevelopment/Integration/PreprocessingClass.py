@@ -70,6 +70,7 @@ class Cleanupper():
         #print(sentence)
         sentence=p.stem_sentence(sentence)
         return str(sentence)
+    
     def tokenize(self,sentence):
         sentences = nltk.sent_tokenize(sentence)
         tokenized_sentences = [nltk.word_tokenize(sentence) for sentence in sentences]

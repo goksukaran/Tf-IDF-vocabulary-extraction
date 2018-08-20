@@ -29,5 +29,5 @@ for i in range(0,2):
         Tf_idf.add_document(Tokinzedsentece)
         
         dataprocesing.save(filename+'_preprocessed.csv')
-        
+        Tf_idf.Saverelatedwords()
         filename='General'
