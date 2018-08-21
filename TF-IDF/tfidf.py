@@ -41,7 +41,7 @@ class TfIdf():
         corpora.MmCorpus.serialize(self.filedic+'.mm', self.raw_corpus)
         #print(self.raw_corpus)
         #print(self.spesificwords)
-    def load(self):
+    def loaddictionary(self):
         self.corpus_dict = corpora.Dictionary.load(self.filedic+'.dict')
         self.corpus = corpora.MmCorpus(self.filedic+'.mm')
     def buildmodel(self):
@@ -59,9 +59,14 @@ class TfIdf():
         for words in list(self.idf_results.keys())[0:n]:
             #print(words)
             print(self.corpus_dict[words])
+    def loadModel(self):
+        self.tfidf=models.TfidfModel.load(self.filedic+'TF_IDFmodel')
+        self.idf_results=OrderedDict(sorted(self.tfidf.dfs.items(), key = itemgetter(1), reverse = True))
+        print(dir(self.tfidf))
     def saveModel(self):
         self.tfidf.save(self.filedic+'TF_IDFmodel')
             
     
-    def listnTF_IDF(self,n):
+    def getTF_IDF(self):
+        #self.tfidf.df2idf()
         pass 
