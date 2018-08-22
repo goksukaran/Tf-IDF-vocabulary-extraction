@@ -31,6 +31,7 @@ class TfIdf():
         self.tfidf=models.TfidfModel()
         self.filedic=filedic
         self.corpus=''
+        self.tf_idf=dict()
     def add_document(self,text):
         self.corpus_dict.add_documents(text)
         self.corpus_dict.save(self.filedic+'.dict')
@@ -46,9 +47,6 @@ class TfIdf():
         self.corpus = corpora.MmCorpus(self.filedic+'.mm')
         self.spesificwords=corpora.Dictionary.load(self.filedic+'spesific.dict')
     def buildmodel(self):
-        
-        
-    
         self.tfidf = models.TfidfModel(self.corpus,normalize=True)
         self.idf_results=OrderedDict(sorted(self.tfidf.dfs.items(), key = itemgetter(1), reverse = True))
         
@@ -61,14 +59,14 @@ class TfIdf():
             #print(words)
             print(self.corpus_dict[words])
     def loadModel(self):
-        self.tfidf=models.TfidfModel.load(self.filedic+'TF_IDFmodel')
-        
-        self.idf_results=OrderedDict(sorted(self.tfidf.dfs.items(), key = itemgetter(1), reverse = True))
+        self.tfidf=models.TfidfModel.load(self.filedic+'TF_IDFmodel')  
+        self.idf_results=OrderedDict(sorted(self.tfidf.idfs.items(), key = itemgetter(1), reverse = True))
     
     def saveModel(self):
         self.tfidf.save(self.filedic+'TF_IDFmodel')
         
     
     def getTF_IDF(self):
-        for words in self.spesificwords:
-            print(self.spesificwords[words])
+        
+        for words in self.tfidf.dfs:
+            pass
