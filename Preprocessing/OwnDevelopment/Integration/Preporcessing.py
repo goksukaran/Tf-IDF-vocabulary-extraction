@@ -29,8 +29,9 @@ for i in range(0,2):
         
         Tf_idf.add_document(Tokinzedsentece)
         
-        dataprocesing.save(filename+'_preprocessed.csv')
-        Tf_idf.Saverelatedwords()
-        filename='General'
+        #dataprocesing.save(filename+'_preprocessed.csv')
         
+    print('hi')
+    Tf_idf.Saverelatedwords()
+    filename='General'    
 Tf_idf.SaveCorpusdic()

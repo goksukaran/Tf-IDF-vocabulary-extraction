@@ -53,9 +53,10 @@ class TfIdf():
     def SaveCorpusdic(self):
         self.corpus_dict.save(self.filedic+'.dict')
         corpora.MmCorpus.serialize(self.filedic+'.mm', self.raw_corpus)
+        self.spesificwords.save(self.filedic+'spesific.dict')
     def Saverelatedwords(self):
         self.spesificwords=copy.copy(self.corpus_dict)
-        self.spesificwords.save(self.filedic+'spesific.dict')
+        
     def listnhighIdfs(self,n):
         self.idf_results=OrderedDict(sorted(self.tfidf.dfs.items(), key = itemgetter(1), reverse = True))
     
