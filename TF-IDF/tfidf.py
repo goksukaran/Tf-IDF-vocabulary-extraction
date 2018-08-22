@@ -17,7 +17,7 @@ import collections
 from gensim import corpora, models
 from collections import OrderedDict
 from operator import itemgetter  
-
+import copy
 class TfIdf():
     global filenamedic
     filename="ad"
@@ -44,16 +44,17 @@ class TfIdf():
     def loaddictionary(self):
         self.corpus_dict = corpora.Dictionary.load(self.filedic+'.dict')
         self.corpus = corpora.MmCorpus(self.filedic+'.mm')
+        self.spesificwords=corpora.Dictionary.load(self.filedic+'spesific.dict')
     def buildmodel(self):
         
         
     
         self.tfidf = models.TfidfModel(self.corpus,normalize=True)
-        self.idf_results=OrderedDict(sorted(self.tfidf.idfs.items(), key = itemgetter(1), reverse = True))
-     
+        self.idf_results=OrderedDict(sorted(self.tfidf.dfs.items(), key = itemgetter(1), reverse = True))
+        
     def Saverelatedwords(self):
         self.spesificwords=self.corpus_dict
-        #print(self.spesificwords)
+        self.spesificwords.save(self.filedic+'spesific.dict')
     def listnhighIdfs(self,n):
         
         for words in list(self.idf_results.keys())[0:n]:
@@ -61,12 +62,13 @@ class TfIdf():
             print(self.corpus_dict[words])
     def loadModel(self):
         self.tfidf=models.TfidfModel.load(self.filedic+'TF_IDFmodel')
+        
         self.idf_results=OrderedDict(sorted(self.tfidf.dfs.items(), key = itemgetter(1), reverse = True))
-        print(dir(self.tfidf))
+    
     def saveModel(self):
         self.tfidf.save(self.filedic+'TF_IDFmodel')
-            
+        
     
     def getTF_IDF(self):
-        #self.tfidf.df2idf()
-        pass 
+        for words in self.spesificwords:
+            print(self.spesificwords[words])

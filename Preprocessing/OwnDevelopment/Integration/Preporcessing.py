@@ -26,6 +26,7 @@ for i in range(0,2):
         
         dataprocesing=PreprocessingFunctions(chunck_df)
         Tokinzedsentece=dataprocesing.IterateoverRow()
+        
         Tf_idf.add_document(Tokinzedsentece)
         
         dataprocesing.save(filename+'_preprocessed.csv')

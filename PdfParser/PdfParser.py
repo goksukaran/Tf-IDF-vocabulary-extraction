@@ -45,7 +45,14 @@ class Preprocessing():
         self.processedtext=self.processedtext.strip()
         self.processedtext=self.processedtext.replace('\n','')
         self.processedtext=self.processedtext.replace('\t','')
-       
+        print(self.processedtext)
+    def save(self,filename):
+        raw_data =[[filename,self.processedtext.encode("utf-8")]]
+        #print(text.encode("utf-8"))
+        df = pd.DataFrame(raw_data,columns=['Filename','Text'],index=None)
+        print(df.to_string(index=False))
+        with open(corpuspath, 'a') as outfile:
+            df.to_csv(outfile,sep='\t',index=False,header=None)
 extensions = ('*.pdf')
   
 filenamelist =[]
@@ -58,9 +65,7 @@ for filename in glob.glob(extensions):
     
     prepocessing=Preprocessing(text)
     prepocessing.Removenewlines()
-    print(prepocessing.processedtext)
-    #print(prepocessing.processedtext)
-    save(filename,text)
+    prepocessing.save(filename)
         
 
     
