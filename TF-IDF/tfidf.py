@@ -34,12 +34,12 @@ class TfIdf():
         self.tf_idf=dict()
     def add_document(self,text):
         self.corpus_dict.add_documents(text)
-        self.corpus_dict.save(self.filedic+'.dict')
+        
         #self.document_name.append(doc_name)
         #print([self.corpus_dict.doc2bow(t) for t in text])
         tmp=[self.corpus_dict.doc2bow(t) for t in text]
         self.raw_corpus.append(tmp[0])
-        corpora.MmCorpus.serialize(self.filedic+'.mm', self.raw_corpus)
+        
         #print(self.raw_corpus)
         #print(self.spesificwords)
     def loaddictionary(self):
@@ -49,24 +49,26 @@ class TfIdf():
     def buildmodel(self):
         self.tfidf = models.TfidfModel(self.corpus,normalize=True)
         self.idf_results=OrderedDict(sorted(self.tfidf.dfs.items(), key = itemgetter(1), reverse = True))
-        
+    
+    def SaveCorpusdic(self):
+        self.corpus_dict.save(self.filedic+'.dict')
+        corpora.MmCorpus.serialize(self.filedic+'.mm', self.raw_corpus)
     def Saverelatedwords(self):
-        self.spesificwords=self.corpus_dict
+        self.spesificwords=copy.copy(self.corpus_dict)
         self.spesificwords.save(self.filedic+'spesific.dict')
     def listnhighIdfs(self,n):
-        
+        self.idf_results=OrderedDict(sorted(self.tfidf.dfs.items(), key = itemgetter(1), reverse = True))
+    
         for words in list(self.idf_results.keys())[0:n]:
             #print(words)
-            print(self.corpus_dict[words])
+            print(self.spesificwords[words])
     def loadModel(self):
         self.tfidf=models.TfidfModel.load(self.filedic+'TF_IDFmodel')  
-        self.idf_results=OrderedDict(sorted(self.tfidf.idfs.items(), key = itemgetter(1), reverse = True))
-    
+        
     def saveModel(self):
         self.tfidf.save(self.filedic+'TF_IDFmodel')
         
     
     def getTF_IDF(self):
-        
-        for words in self.tfidf.dfs:
-            pass
+        print(self.corpus_dict)
+        print(self.spesificwords)

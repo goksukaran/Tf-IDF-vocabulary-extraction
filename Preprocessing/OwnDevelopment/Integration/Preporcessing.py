@@ -32,3 +32,5 @@ for i in range(0,2):
         dataprocesing.save(filename+'_preprocessed.csv')
         Tf_idf.Saverelatedwords()
         filename='General'
+        
+Tf_idf.SaveCorpusdic()
