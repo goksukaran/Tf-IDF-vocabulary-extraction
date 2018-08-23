@@ -24,6 +24,6 @@ if __name__ == "__main__":
     Tf_idf.SaveCorpusdic()
     Tf_idf.loaddictionary()
     Tf_idf.buildmodel()
-    
+    Tf_idf.listnhighIdfs(4)
     Tf_idf.getTF_IDF()
     
