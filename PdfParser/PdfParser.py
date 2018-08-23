@@ -8,6 +8,7 @@ import codecs
 import glob, os.path
 import pandas as pd
 import numpy as np
+from gensim.parsing.preprocessing import strip_multiple_whitespaces
 #===============================================================================
 # text=pdf_to_text('/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilization/PhytonCode/ExampleProjects/Pdfparser/pdfrw/Pdfs/BuildingautomationsystemsConceptsandtechnologyreview.pdf')
 # 
@@ -42,9 +43,8 @@ class Preprocessing():
         self.processedtext = text
         
     def Removenewlines(self):
-        self.processedtext=self.processedtext.strip()
-        self.processedtext=self.processedtext.replace('\n','')
-        self.processedtext=self.processedtext.replace('\t','')
+        self.processedtext=strip_multiple_whitespaces(self.processedtext)
+
         print(self.processedtext)
     def save(self,filename):
         raw_data =[[filename,self.processedtext.encode("utf-8")]]

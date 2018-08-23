@@ -21,17 +21,24 @@ cwd = os.getcwd()
 
 filename='Building_automation'
 Tf_idf = TfIdf(corpuspath+'Gensim_output')
-for i in range(0,2):
-    for chunck_df in pd.read_csv(corpuspath+filename+'.csv', chunksize=3,header=0,index_col=False,sep='\t',encoding='utf-8'):
+
+for chunck_df in pd.read_csv(corpuspath+filename+'.csv', chunksize=1,header=0,index_col=False,sep='\t',encoding='utf-8'):
         
-        dataprocesing=PreprocessingFunctions(chunck_df)
-        Tokinzedsentece=dataprocesing.IterateoverRow()
-        
-        Tf_idf.add_document(Tokinzedsentece)
+    dataprocesing=PreprocessingFunctions(chunck_df)
+    Tokinzedsentece=dataprocesing.IterateoverRow()
+    print(Tokinzedsentece)
+    #print('hi')
+    Tf_idf.add_document(Tokinzedsentece)
+    Tf_idf.Saverelatedwords()
         
         #dataprocesing.save(filename+'_preprocessed.csv')
+filename='General'         
+for chunck_df in pd.read_csv(corpuspath+filename+'.csv', chunksize=1,header=0,index_col=False,sep='\t',encoding='utf-8'):
+    
+    dataprocesing=PreprocessingFunctions(chunck_df)
+    Tokinzedsentece=dataprocesing.IterateoverRow()
         
-    print('hi')
-    Tf_idf.Saverelatedwords()
-    filename='General'    
+    Tf_idf.add_document(Tokinzedsentece)
+    
+   
 Tf_idf.SaveCorpusdic()
