@@ -39,7 +39,7 @@ class TfIdf():
         #print([self.corpus_dict.doc2bow(t) for t in text])
         tmp=[self.corpus_dict.doc2bow(t) for t in text]
         print(tmp)
-        self.raw_corpus=tmp
+        self.raw_corpus.append(tmp[0])
         corpora.MmCorpus.serialize(self.filedic+'.mm', self.raw_corpus)
         #print(self.raw_corpus)
         #print(self.spesificwords)
@@ -75,10 +75,10 @@ class TfIdf():
         
     
     def getTF_IDF(self):
-        print(self.corpus)
+        #print(self.corpus)
         print(self.corpus_dict)
         print(self.spesificwords)
-        print(len(self.tfidf.dfs.keys()))
+        print(self.tfidf.dfs.keys())
         #=======================================================================
         # for words in self.spesificwords:
         #     print(self.spesificwords[words])
