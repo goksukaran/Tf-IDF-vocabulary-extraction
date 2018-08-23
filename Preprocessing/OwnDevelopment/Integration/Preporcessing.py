@@ -26,7 +26,7 @@ for chunck_df in pd.read_csv(corpuspath+filename+'.csv', chunksize=5,header=0,in
         
     dataprocesing=PreprocessingFunctions(chunck_df)
     Tokinzedsentece=dataprocesing.IterateoverRow()
-    print(Tokinzedsentece)
+    #print(Tokinzedsentece)
     #print('hi')
     Tf_idf.add_document(Tokinzedsentece)
     Tf_idf.Saverelatedwords()

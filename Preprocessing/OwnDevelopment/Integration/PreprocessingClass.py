@@ -78,6 +78,7 @@ class Cleanupper():
         for word in sentence.split():
             if d.check(word):
                 english_words.append(word)
+                
         return (" ".join(english_words))
     def tokenize(self,sentence):
         sentences = nltk.sent_tokenize(sentence)

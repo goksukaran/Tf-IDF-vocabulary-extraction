@@ -38,7 +38,8 @@ class TfIdf():
         #self.document_name.append(doc_name)
         #print([self.corpus_dict.doc2bow(t) for t in text])
         tmp=[self.corpus_dict.doc2bow(t) for t in text]
-        self.raw_corpus.append(tmp[0])
+        print(tmp)
+        self.raw_corpus=tmp
         corpora.MmCorpus.serialize(self.filedic+'.mm', self.raw_corpus)
         #print(self.raw_corpus)
         #print(self.spesificwords)
@@ -61,7 +62,7 @@ class TfIdf():
         self.spesificwords.save(self.filedic+'spesific.dict')
         
     def listnhighIdfs(self,n):
-        self.idf_results=OrderedDict(sorted(self.tfidf.dfs.items(), key = itemgetter(1), reverse = True))
+        self.idf_results=OrderedDict(sorted(self.tfidf.idfs.items(), key = itemgetter(1), reverse = True))
     
         for words in list(self.idf_results.keys())[0:n]:
             #print(words)
