@@ -10,6 +10,7 @@ from gensim.parsing.porter import PorterStemmer
 import nltk 
 import pandas as pd
 import sys
+import enchant
 sys.path.append('/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilization/PhytonCode/TF-IDF')
 
 class PreprocessingFunctions():
@@ -49,10 +50,12 @@ class PreprocessingFunctions():
 class Cleanupper():
     global p
     p = PorterStemmer()
+    global d
+    d = enchant.Dict("en_US")
     def iterate(self):
         for cleanup_method in [self.stopword_remove,
                                self.convert_lowercase,
-                               self.porter_stemmer,
+                               self.remove_non_english,
                                self.tokenize
                                ]:
             yield cleanup_method
@@ -70,7 +73,12 @@ class Cleanupper():
         #print(sentence)
         sentence=p.stem_sentence(sentence)
         return str(sentence)
-    
+    def remove_non_english(self,sentence):
+        english_words = []
+        for word in sentence.split():
+            if d.check(word):
+                english_words.append(word)
+        return (" ".join(english_words))
     def tokenize(self,sentence):
         sentences = nltk.sent_tokenize(sentence)
         tokenized_sentences = [nltk.word_tokenize(sentence) for sentence in sentences]

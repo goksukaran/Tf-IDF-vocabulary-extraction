@@ -22,7 +22,7 @@ cwd = os.getcwd()
 filename='Building_automation'
 Tf_idf = TfIdf(corpuspath+'Gensim_output')
 
-for chunck_df in pd.read_csv(corpuspath+filename+'.csv', chunksize=1,header=0,index_col=False,sep='\t',encoding='utf-8'):
+for chunck_df in pd.read_csv(corpuspath+filename+'.csv', chunksize=5,header=0,index_col=False,sep='\t',encoding='utf-8'):
         
     dataprocesing=PreprocessingFunctions(chunck_df)
     Tokinzedsentece=dataprocesing.IterateoverRow()
@@ -33,7 +33,7 @@ for chunck_df in pd.read_csv(corpuspath+filename+'.csv', chunksize=1,header=0,in
         
         #dataprocesing.save(filename+'_preprocessed.csv')
 filename='General'         
-for chunck_df in pd.read_csv(corpuspath+filename+'.csv', chunksize=1,header=0,index_col=False,sep='\t',encoding='utf-8'):
+for chunck_df in pd.read_csv(corpuspath+filename+'.csv', chunksize=5,header=0,index_col=False,sep='\t',encoding='utf-8'):
     
     dataprocesing=PreprocessingFunctions(chunck_df)
     Tokinzedsentece=dataprocesing.IterateoverRow()
