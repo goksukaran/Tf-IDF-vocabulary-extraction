@@ -84,12 +84,14 @@ class TfIdf():
         pass
     
     def getTF_IDF(self):
-        print(self.tf_idf_results)
-        print(self.corpus_dict)
+        
+        print(len(self.corpus_dict))
+        print(len(self.spesificwords))
+        print(len(self.tfidf.idfs))
         for words in (self.spesificwords):
-            print(words)
-            print(self.tf_idf_results[words])
-            #print(self.tf_idf_results[words])
+            #print(words)
+            pass
+           
         #=======================================================================
         # print(self.corpus_dict)
         # print(self.spesificwords)

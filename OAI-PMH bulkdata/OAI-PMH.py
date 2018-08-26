@@ -6,6 +6,8 @@ Created on 26 Jul 2018
 #!/usr/bin/env python
 from oaipmh.client import Client
 from oaipmh.metadata import MetadataRegistry, oai_dc_reader
+from PdfParser.PdfParser import Preprocessing
+
 import json
 import bz2
 from numpy import record
@@ -28,16 +30,13 @@ for record in client.listRecords(metadataPrefix='oai_dc',set='cs'):
     header, metadata, _ = record
     doc = {}
     #Extract identifier
-    doc["id"] = header.identifier()
+    #doc["id"] = header.identifier()
     #Extract title and other metadata
     doc["title"] = "\n".join(metadata["title"])
     doc["abstract"] = "\n".join(metadata["description"])
-    doc["authors"] = metadata["creator"]
+    #doc["authors"] = metadata["creator"]
     
-    raw_data =[[doc["id"],doc["abstract"].encode("utf-8")]]
-
-    df = pd.DataFrame(raw_data,index=None)
-    #print(df.to_string(index=False))
-    with open(corpuspath, 'a') as outfile:
-        df.to_csv(outfile,sep='\t',index=False,header=None, encoding="utf-8")
-    print("Wrote %s" % doc["abstract"])
+    prepocessing=Preprocessing(str(["abstract"]))
+    prepocessing.Removenewlines()
+    prepocessing.save(doc["title"])
+   

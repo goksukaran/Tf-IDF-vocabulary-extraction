@@ -53,19 +53,20 @@ class Preprocessing():
         print(df.to_string(index=False))
         with open(corpuspath, 'a') as outfile:
             df.to_csv(outfile,sep='\t',index=False,header=None)
-extensions = ('*.pdf')
-  
-filenamelist =[]
-os.chdir(pdfpath)   
-for filename in glob.glob(extensions):
-     
-    #filenamelist.append(file)
-    #print(filename)
-    text=str(extractpdf(filename))
-    
-    prepocessing=Preprocessing(text)
-    prepocessing.Removenewlines()
-    prepocessing.save(filename)
-        
 
-    
+  
+
+        
+if __name__ == "__main__":
+    extensions = ('*.pdf')
+    filenamelist =[]
+    os.chdir(pdfpath)   
+    for filename in glob.glob(extensions):
+     
+        #filenamelist.append(file)
+        #print(filename)
+        text=str(extractpdf(filename))
+        
+        prepocessing=Preprocessing(text)
+        prepocessing.Removenewlines()
+        prepocessing.save(filename)

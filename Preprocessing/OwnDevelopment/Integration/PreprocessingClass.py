@@ -6,6 +6,7 @@ Created on 6 Aug 2018
 
 from gensim.parsing.preprocessing import remove_stopwords
 from gensim.parsing.preprocessing import strip_numeric
+from gensim.parsing.preprocessing import strip_multiple_whitespaces
 from gensim.utils import tokenize
 from gensim.parsing.porter import PorterStemmer
 import nltk 
