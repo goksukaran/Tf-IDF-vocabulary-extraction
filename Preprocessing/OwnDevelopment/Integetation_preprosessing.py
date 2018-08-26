@@ -20,7 +20,7 @@ def Addtweet2corpus():
     
     for filename in glob.glob(extensions):
         #filenamelist.append(file)
-        #print(filename)
+        print(filename)
         dataframe=pd.read_csv(filename,names=["text"],dtype={"text":str})
         
         onelinetext=integrationTweets(dataframe)
@@ -31,7 +31,7 @@ def Addtweet2corpus():
         #print(df.to_string(index=False))
         with open(corpuspath, 'a') as outfile:
             df.to_csv(outfile,sep='\t',index=False,header=None, encoding="utf-8")
-        
+            
     
     
 Addtweet2corpus()

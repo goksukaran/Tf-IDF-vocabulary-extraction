@@ -9,7 +9,7 @@ from oaipmh.metadata import MetadataRegistry, oai_dc_reader
 import json
 import bz2
 from numpy import record
-baseurl='http://broker10.fcla.edu/cgi/b/broker20/broker20?'
+baseurl='http://export.arxiv.org/oai2?'
 savedic='/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilization/PhytonCode/Data/Corpus.csv '
 
 if __name__ == "__main__":
@@ -24,7 +24,7 @@ if __name__ == "__main__":
     #Write to file
     #with bz2.BZ2File('out.json', 'wb') as outfile:
     with open(savedic, 'a') as outfile:
-         for record in client.listRecords(metadataPrefix='oai_dc',set='physics:math-ph'):
+         for record in client.listRecords(metadataPrefix='oai_dc',set='cs'):
              header, metadata, _ = record
              doc = {}
              #Extract identifier

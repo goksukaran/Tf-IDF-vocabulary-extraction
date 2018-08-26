@@ -81,7 +81,7 @@ class TfIdf():
         self.tfidf.save(self.filedic+'TF_IDFmodel')
     
     def printsome(self):
-            
+        pass
     
     def getTF_IDF(self):
         print(self.tf_idf_results)

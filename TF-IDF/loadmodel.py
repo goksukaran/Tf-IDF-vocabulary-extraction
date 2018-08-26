@@ -15,4 +15,4 @@ if __name__ == "__main__":
    #Tf_idf.buildmodel()
    #Tf_idf.saveModel()
    #print(Tf_idf.corpus_dict)
-   #Tf_idf.listnhighIdfs(100)
+   Tf_idf.listnhighIdfs(200)

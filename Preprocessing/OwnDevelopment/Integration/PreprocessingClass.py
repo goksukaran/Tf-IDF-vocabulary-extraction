@@ -5,6 +5,7 @@ Created on 6 Aug 2018
 '''
 
 from gensim.parsing.preprocessing import remove_stopwords
+from gensim.parsing.preprocessing import strip_numeric
 from gensim.utils import tokenize
 from gensim.parsing.porter import PorterStemmer
 import nltk 
@@ -56,7 +57,8 @@ class Cleanupper():
         for cleanup_method in [self.stopword_remove,
                                self.convert_lowercase,
                                self.remove_non_english,
-                               self.porter_stemmer,
+                               #self.porter_stemmer,
+                               self.remove_numbers,
                                self.tokenize
                                ]:
             yield cleanup_method
@@ -81,6 +83,9 @@ class Cleanupper():
                 english_words.append(word)
                 
         return (" ".join(english_words))
+    def remove_numbers(self,sentence):
+        sentence=strip_numeric(sentence)
+        return str(sentence)
     def tokenize(self,sentence):
         sentences = nltk.sent_tokenize(sentence)
         tokenized_sentences = [nltk.word_tokenize(sentence) for sentence in sentences]
