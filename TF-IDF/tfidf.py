@@ -39,10 +39,9 @@ class TfIdf():
         #self.document_name.append(doc_name)
         #print([self.corpus_dict.doc2bow(t) for t in text])
         tmp=[self.corpus_dict.doc2bow(t) for t in text]
-        print(tmp)
         if tmp!=[]:
             self.raw_corpus.append(tmp[0])
-        corpora.MmCorpus.serialize(self.filedic+'.mm', self.raw_corpus)
+        
         #print(self.raw_corpus)
         #print(self.spesificwords)
     def loaddictionary(self):
@@ -58,6 +57,7 @@ class TfIdf():
     
     def SaveCorpusdic(self):
         self.corpus_dict.save(self.filedic+'.dict')
+        corpora.MmCorpus.serialize(self.filedic+'.mm', self.raw_corpus)
         
         
     def Saverelatedwords(self):

@@ -12,7 +12,6 @@ sys.path.append('/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilizatio
 from tfidf import TfIdf
 
 
-
 corpuspath='/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilization/PhytonCode/Data/'
 
 cwd = os.getcwd()
@@ -28,12 +27,20 @@ for chunck_df in pd.read_csv(corpuspath+filename+'.csv', chunksize=1,header=0,in
     dataprocesing=PreprocessingFunctions(chunck_df)
     Tokinzedsentece=dataprocesing.IterateoverRow()
     
-    print(Tokinzedsentece)
+    #print(Tokinzedsentece)
     Tf_idf.add_document(Tokinzedsentece)
-    Tf_idf.Saverelatedwords()
-        
+   
+Tf_idf.Saverelatedwords()        
         #dataprocesing.save(filename+'_preprocessed.csv')
 filename='General'          
+for chunck_df in pd.read_csv(corpuspath+filename+'.csv', chunksize=1,header=0,index_col=False,sep='\t',encoding='utf-8'):
+    
+    dataprocesing=PreprocessingFunctions(chunck_df)
+    Tokinzedsentece=dataprocesing.IterateoverRow()
+        
+    Tf_idf.add_document(Tokinzedsentece)
+
+filename='cs'          
 for chunck_df in pd.read_csv(corpuspath+filename+'.csv', chunksize=1,header=0,index_col=False,sep='\t',encoding='utf-8'):
     
     dataprocesing=PreprocessingFunctions(chunck_df)
