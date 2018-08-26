@@ -56,6 +56,7 @@ class Cleanupper():
         for cleanup_method in [self.stopword_remove,
                                self.convert_lowercase,
                                self.remove_non_english,
+                               self.porter_stemmer,
                                self.tokenize
                                ]:
             yield cleanup_method
