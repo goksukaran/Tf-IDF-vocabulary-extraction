@@ -7,6 +7,6 @@ if __name__ == "__main__":
    Tf_idf.loaddictionary()
    Tf_idf.buildmodel()
    Tf_idf.saveModel()
-   #Tf_idf.getTF_IDF()
+   Tf_idf.getTF_IDF()
    #print(Tf_idf.corpus_dict)
-   Tf_idf.listnhighIdfs(4)
+   #Tf_idf.listnhighIdfs(4)

@@ -93,7 +93,8 @@ class TfIdf():
         print(len(self.corpus_dict))
         print(len(self.spesificwords))
         print(len(self.tfidf.idfs))
-        for words in (self.spesificwords):
+        print(len(self.tfidf.idfs))
+        for words in (self.model_results):
             #print(words)
             pass
            

@@ -12,7 +12,7 @@ sys.path.append('/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilizatio
 from tfidf import TfIdf
 
 
-corpuspath='/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilization/PhytonCode/Data/'
+corpuspath='/Users/goksukara/Desktop/Projects/EclipseWorkspace/Specilization/PhytonCode/Data/Data'
 
 cwd = os.getcwd()
 
@@ -21,7 +21,7 @@ cwd = os.getcwd()
 filename='Building_automation'
 Tf_idf = TfIdf(corpuspath+'Gensim_output')
 
-for chunck_df in pd.read_csv(corpuspath+filename+'.csv', chunksize=1,header=0,index_col=False,sep='\t',encoding='utf-8'):
+for chunck_df in pd.read_csv(corpuspath+filename+'.csv', chunksize=1,header=0,index_col=False,sep='\t',encoding='utf-8',dtype=dt):
     
    
     dataprocesing=PreprocessingFunctions(chunck_df,Tf_idf)
