@@ -19,16 +19,19 @@ class PreprocessingFunctions():
     processed_data = []
     filenamecolumn=[]
     textcolumn=[]
-    def __init__(self, dataframe,):
+    tf_idf=''
+    def __init__(self, dataframe,tf_idf):
         self.processed_data = dataframe
         self.filenamecolumn=self.processed_data.loc[:,'file_name']
         self.textcolumn=self.processed_data.loc[:,'text']
+        self.tf_idf=tf_idf
     def IterateoverRow(self):
         for index, row, in self.processed_data.iterrows():  
            
             row['text']=self.cleanup(Cleanupper(),row['text'])
             #print(row['text'])
-            return row['text']
+            self.tf_idf.add_document(row['text'])
+            
        
     def cleanup(self, cleanuper,row):
         #print(self.processed_data.loc[:,'text'])
@@ -37,7 +40,6 @@ class PreprocessingFunctions():
             row = cleanup_method(row)
         #self.processed_data.loc[:,'text'] = t
         #print(row)
-       
         return row
     def add_document_dic(self):
         pass

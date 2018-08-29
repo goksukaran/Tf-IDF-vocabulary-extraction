@@ -11,11 +11,12 @@ def addallfilesinpath(path):
 if __name__ == "__main__":
     
     Tf_idf = TfIdf('s')
-    list=[['human1', 'interface', 'computer'],['ship', 'interface', 'interface']]
-    list1=[['ship', 'interface', 'interface']]
+    list=[['human', 'human', 'interface'],['ship', 'human', 'interface']]
+    list1=[['ship', 'humasn', 'interface']]
     list2=[['human', 'human', 'am']]
     list3=[['humafn', 'humasn', 'am1']]
     #map(unicode,list)
+     
     Tf_idf.add_document(list)
     Tf_idf.add_document(list1)
     Tf_idf.Saverelatedwords()
@@ -24,6 +25,7 @@ if __name__ == "__main__":
     Tf_idf.SaveCorpusdic()
     Tf_idf.loaddictionary()
     Tf_idf.buildmodel()
-    Tf_idf.listnhighIdfs(4)
+    #Tf_idf.listnhighIdfs(10)
     Tf_idf.getTF_IDF()
-    
+     
+   

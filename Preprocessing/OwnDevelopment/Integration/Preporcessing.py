@@ -24,29 +24,29 @@ Tf_idf = TfIdf(corpuspath+'Gensim_output')
 for chunck_df in pd.read_csv(corpuspath+filename+'.csv', chunksize=1,header=0,index_col=False,sep='\t',encoding='utf-8'):
     
    
-    dataprocesing=PreprocessingFunctions(chunck_df)
+    dataprocesing=PreprocessingFunctions(chunck_df,Tf_idf)
     Tokinzedsentece=dataprocesing.IterateoverRow()
     
-    #print(Tokinzedsentece)
-    Tf_idf.add_document(Tokinzedsentece)
+    
+    
    
 Tf_idf.Saverelatedwords()        
         #dataprocesing.save(filename+'_preprocessed.csv')
 filename='General'          
 for chunck_df in pd.read_csv(corpuspath+filename+'.csv', chunksize=1,header=0,index_col=False,sep='\t',encoding='utf-8'):
     
-    dataprocesing=PreprocessingFunctions(chunck_df)
+    dataprocesing=PreprocessingFunctions(chunck_df,Tf_idf)
     Tokinzedsentece=dataprocesing.IterateoverRow()
-        
-    Tf_idf.add_document(Tokinzedsentece)
 
-filename='cs'          
-for chunck_df in pd.read_csv(corpuspath+filename+'.csv', chunksize=1,header=0,index_col=False,sep='\t',encoding='utf-8'):
-    
-    dataprocesing=PreprocessingFunctions(chunck_df)
-    Tokinzedsentece=dataprocesing.IterateoverRow()
-        
-    Tf_idf.add_document(Tokinzedsentece)
+#===============================================================================
+# filename='cs'          
+# for chunck_df in pd.read_csv(corpuspath+filename+'.csv', chunksize=1,header=0,index_col=False,sep='\t',encoding='utf-8'):
+#     
+#     dataprocesing=PreprocessingFunctions(chunck_df)
+#     Tokinzedsentece=dataprocesing.IterateoverRow()
+#         
+#     Tf_idf.add_document(Tokinzedsentece)
+#===============================================================================
     
    
 Tf_idf.SaveCorpusdic()
