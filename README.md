@@ -1,2 +1,2 @@
-# Wikipedia-Doc-Automatic-Download
-Download all the related documents form wikipedia to required extend
+# Keyword exraction from document
+Implementation of different algorthms to exract keywords form given document. Using TF-IDF, word2vec and TextRank
